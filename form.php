@@ -2,12 +2,41 @@
 
 // エラーを出力
 ini_set("display_errors", "On");
-
 // functions.php 読み込み
 require(dirname(__FILE__) . '/functions.php');
 
 // セッションスタート
 session_start();
+
+// トークン作成（01）
+$token_one = uniqid('', true);
+// セッション変数へ格納
+$_SESSION['token_one'] = $token_one;
+
+$img_path = "";
+if (isset($_POST['path'])) {
+    $img_path = $_POST['path'];
+}
+
+
+// ================= フォーム値　判別 ===============*/
+
+//====== POSTされていたら画面遷移
+
+/*
+if (
+    isset($_POST['user_name']) && isset($_POST['user_name_kana'])  && isset($_POST['tel']) &&
+    isset($_POST['email_address'])
+) {
+
+    $_SESSION['toko'] = 'kokokara';
+    header("Location: register.php");
+} else {
+    //====== 入力項目エラー
+
+}
+*/
+
 
 try {
 
@@ -18,6 +47,8 @@ try {
     $pdo->beginTransaction();
 } catch (PDOException $e) {
     print('Error' . $e->getMessage());
+} finally {
+    $pdo = null;
 }
 
 ?>
@@ -42,16 +73,49 @@ try {
     <script src="https://cdn.jsdelivr.net/npm/vuelidate@0.7.4/dist/validators.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuelidate@0.7.4/dist/vuelidate.min.js"></script>
 
+    <style>
+        #select_img {
+            width: 45%;
+            height: auto;
+        }
+
+        #select_img>img {
+            width: 100%;
+            height: auto;
+        }
+
+        #select_item {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            margin: 0px 0 5px 0;
+            display: inline-block;
+        }
+
+        .f_content_01 {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- 問い合わせ　フォーム開始 -->
 
-    <p class="c-head01 u-en u-uppercase">contact</p>
+    <div class="container">
+        <div class="f_content_01">
+            <p class="c-head01 u-en u-uppercase">contact</p>
+
+            <p id="select_img">
+                <span id="select_item">選択された商品</span>
+                <img src="<?php print h($img_path); ?>">
+            </p>
+        </div>
+    </div>
 
     <div class="Form" id="app">
-        <form action="" method="POST" @submit.prevent="submitForm">
+        <form action="register.php" method="POST" @submit.prevent="submitForm" name="index_submit">
 
             <!-- 名前　 -->
             <div class="Form-Item">
@@ -66,7 +130,9 @@ try {
                 <p class="error-user_name">入力欄が空欄になっています。お名前をご入力ください。</p>
                 -->
 
-                    <input type="text" class="Form-Item-Input" placeholder="例）山田太郎" name="user_name" v-model="user_name" @input="$v.user_name.$touch()">
+                    <input type="text" class="Form-Item-Input" value="<?php if (!empty($_POST['user_name'])) {
+                                                                            echo h($_POST['user_name']);
+                                                                        } ?>" placeholder="例）山田太郎" name="user_name" v-model="user_name" @input="$v.user_name.$touch()">
                     <span v-if="$v.user_name.$error" class="err_span">※入力欄が空欄になっています。お名前をご入力ください。</span>
 
                 </p>
@@ -80,7 +146,9 @@ try {
 
                 <p>
                     <!-- Vue.js エラーメッセージ -->
-                    <input type="text" class="Form-Item-Input" placeholder="（例）ヤマダタロウ" name="user_name_kana" v-model="user_name_kana" @input="$v.user_name_kana.$touch()">
+                    <input type="text" class="Form-Item-Input" value="<?php if (!empty($_POST['user_name_kana'])) {
+                                                                            echo h($_POST['user_name_kana']);
+                                                                        } ?>" placeholder="（例）ヤマダタロウ" name="user_name_kana" v-model="user_name_kana" @input="$v.user_name_kana.$touch()">
                     <span v-if="$v.user_name_kana.$error" class="err_span">※入力欄が空欄になっています。お名前（カタカナ）でご入力ください。</span>
                 </p>
             </div>
@@ -92,7 +160,9 @@ try {
                 </p>
 
                 <p>
-                    <input type="text" class="Form-Item-Input" placeholder="例）000-0000-0000" name="tel" v-model="tel" @input="$v.tel.$touch()">
+                    <input type="tel" class="Form-Item-Input" <?php if (!empty($_POST['tel'])) {
+                                                                    echo h($_POST['tel']);
+                                                                } ?> placeholder="例）000-0000-0000" name="tel" v-model="tel" @input="$v.tel.$touch()">
                     <!-- Vue.js エラーメッセージ -->
                     <span v-if="$v.tel.$error" class="err_span">※入力欄が空欄になっています。電話番号をご入力ください。</span>
                 </p>
@@ -105,7 +175,9 @@ try {
                 </p>
 
                 <p>
-                    <input type="email" class="Form-Item-Input" placeholder="例）example@gmail.com" name="email_address" v-model="email_address" @blur="$v.email_address.$touch()">
+                    <input type="email" class="Form-Item-Input" <?php if (!empty($_POST['email_address'])) {
+                                                                    echo h($_POST['email_address']);
+                                                                } ?> placeholder="例）example@gmail.com" name="email_address" v-model="email_address" @blur="$v.email_address.$touch()">
 
                     <!-- Vue.js エラーメッセージ -->
                 <div v-if="$v.email_address.$error">
@@ -116,10 +188,38 @@ try {
                 </p>
             </div>
 
-            <!-- お問い合わせ -->
+            <!-- -->
+
             <div class="Form-Item">
-                <p class="Form-Item-Label isMsg" style="margin: 0 0 15px 0;">お問い合わせ内容<span class="Form-Item-Label-Required">必須</span></p>
-                <textarea class="Form-Item-Textarea" name="toiawase_text" v-model="toiawase_text"></textarea>
+                <p class="Form-Item-Label">お問い合わせ 種別<span class="Form-Item-Label-Required">必須</span></p>
+                <div class="select">
+                    <select name="Inquiry_type" id="" v-model="Inquiry_type" @blur="$v.Inquiry_type.$touch()">
+                        <option value="射出成形について">射出成形について</option>
+                        <option value="ウォータージェットついて">ウォータージェットついて</option>
+                        <option value="ガラステーブルについて">ガラステーブルについて</option>
+                        <option value="クライシスについて">クライシスについて</option>
+                        <option value="その他 設備について">その他 設備について</option>
+                        <option value="会社概要">会社概要</option>
+                        <option value="お見積もり">お見積もり</option>
+                        <option value="その他 お問い合わせ">その他 お問い合わせ</option>
+                    </select>
+                </div>
+
+                <!-- Vue.js エラーメッセージ -->
+                <div v-if="$v.Inquiry_type.$error">
+                    <span class="err_span" v-if="!$v.Inquiry_type.required">
+                        ※入力欄が空欄になっています。「お問い合わせ種別」を選択してください。
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- お問い合わせ 内容 -->
+            <div class="Form-Item">
+                <p class="Form-Item-Label isMsg" style="margin: 0 0 15px 0;">お問い合わせ 内容<span class="Form-Item-Label-Required">必須</span></p>
+                <textarea class="Form-Item-Textarea" name="toiawase_text" value="<?php if (!empty($_POST['toiawase_text'])) {
+                                                                                        echo h($_POST['toiawase_text']);
+                                                                                    } ?>" v-model="toiawase_text"></textarea>
             </div>
 
             <!-- ボタン -->
@@ -164,6 +264,7 @@ try {
                 user_name_kana: '',
                 tel: '',
                 email_address: '',
+                Inquiry_type: '',
                 toiawase_text: ''
             },
 
@@ -185,7 +286,10 @@ try {
                     required,
                     email,
                 },
-                // 
+                // 問い合わせ種別
+                Inquiry_type: {
+                    required
+                },
 
             },
 
@@ -198,6 +302,8 @@ try {
 
                     } else {
                         // submit_err.style.display = "none";
+
+                        document.index_submit.submit();
                         console.log('submit === OK ===');
 
                     }
