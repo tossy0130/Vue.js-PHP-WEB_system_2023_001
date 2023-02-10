@@ -96,10 +96,12 @@ require(dirname(__FILE__) . '/functions.php');
             display: flex;
             list-style: none;
             margin: 0 0 0 8px;
+            flex-wrap: wrap;
         }
 
         .btn_table>li {
-            margin: 0 0.2em
+            margin: 16px 0.4em;
+            width: 29%;
         }
 
 
@@ -200,7 +202,6 @@ require(dirname(__FILE__) . '/functions.php');
             font-size: 13px;
             top: 44px;
             width: 61%;
-            ;
             left: 5%;
             text-decoration: none;
             text-align: center;
@@ -283,6 +284,60 @@ require(dirname(__FILE__) . '/functions.php');
             background: #313131;
             color: #FFF;
         }
+
+        /* ========== タブメニュー ============= */
+
+        /*タブ実装*/
+        .tab_box {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab_box .btn_area {
+            margin: 0 10px;
+            display: -webkit-box;
+            display: flex;
+        }
+
+        .tab_box .tab_btn {
+            width: 220px;
+            padding: 8px 0;
+            color: #333;
+            background: #f5f7f8;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease 0s;
+        }
+
+        .tab_box .tab_btn+.tab_btn {
+            margin-left: 8px;
+        }
+
+        .tab_box .tab_btn:hover {
+            background-color: #dce1e4;
+        }
+
+        .tab_box .tab_btn.active {
+            background: #277595;
+            color: #fff;
+        }
+
+        .tab_box .panel_area {
+            border: solid 1px #e3ebf3;
+            padding: 20px;
+            width: 1200px;
+            background: #fff;
+            box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+            margin: 0 auto;
+        }
+
+        .tab_box .tab_panel {
+            display: none;
+        }
+
+        .tab_box .tab_panel.active {
+            display: block;
+        }
     </style>
 
 </head>
@@ -290,103 +345,235 @@ require(dirname(__FILE__) . '/functions.php');
 <body>
 
     <div class="container">
-        <div class="flex">
 
-            <!--- 左側　画像コンテンツ --->
-            <div>
-                <ul id="main_image" class="main_image">
-                    <li><img src="./img/t_bulue.png"></li>
-                    <li class="img_hide"><img src="./img/t_gleen.png"></li>
-                    <li class="img_hide"><img src="./img/t_red.png"></li>
-                    <li class="img_hide"><img src="./img/t_yellow.png"></li>
-                    <li class="img_hide"><img src="./img/t_bulue.png"></li>
-                    <li class="img_hide"><img src="./img/t_gleen.png"></li>
-                    <li class="img_hide"><img src="./img/t_red.png"></li>
-                    <li class="img_hide"><img src="./img/t_yellow.png"></li>
-                    <li class="img_hide"><img src="./img/t_ashi/red_glay.png"></li>
-                    <li class="img_hide"><img src="./img/t_ashi/bulue_glay.png"></li>
-                </ul>
+        <div class="tab_box">
 
-                <ul id="sub_image" class="sub_image">
-                    <li style="overflow: hidden;height: 545px;"><img src="./img/mb_0088-2.jpg" class="s_img"></li>
-                </ul>
-
+            <!-- タブメニュー -->
+            <div class="btn_area">
+                <p class="tab_btn active">テーブルタイプ　ホワイト</p>
+                <p class="tab_btn">カーボン ブラック</p>
             </div>
-            <!--- 左側　画像コンテンツ END --->
+
+            <!-- タブメニュー END -->
+
+            <!-- タブ コンテンツ 01 -->
+
+            <div class="panel_area">
+
+                <div class="tab_panel active">
+
+                    <!-- ＝＝＝ ホワイト　＝＝＝ -->
+                    <div class="flex">
+
+                        <!--- 左側　画像コンテンツ --->
+                        <div>
+
+                            <ul id="sub_image" class="sub_image">
+                                <li style="overflow: hidden;height: 545px;"><img src="./img/g_01.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_02.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_03.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_04.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_05.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_06.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_07.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_08.jpg" class="s_img"></li>
+                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/a_white/TAK_3618_green.jpg" class="s_img"></li>
+                            </ul>
+
+                        </div>
+                        <!--- 左側　画像コンテンツ END --->
 
 
-            <!-- 右側コンテンツ  -->
-            <div>
+                        <!-- 右側コンテンツ  -->
+                        <div>
 
-                <h2 class="t_title">
-                    <p>テーブルロータイプ</p>
-                    <p>G-Tellus</p>
-                </h2>
+                            <h2 class="t_title">
+                                <p>テーブルロータイプ</p>
+                                <p>G-Tellus</p>
+                            </h2>
 
-                <!-- テーブルカラー  -->
-                <p class="mini_title">テーブルカラー</p>
-                <ul id="btn" class="btn_table">
-                    <li><img src="./img/honban/tak_01.jpg" class="t_color_img"></li>
-                    <li><img src="./img/honban/tak_02.jpg" class="t_color_img"></li>
-                    <li><img src="./img/honban/tak_03.jpg" class="t_color_img"></li>
-                    <li><img src="./img/honban/tak_04.jpg" class="t_color_img"></li>
-                    <li><img src="./img/honban/tak_05.jpg" class="t_color_img"></li>
-                    <li><img src="./img/honban/tak_06.jpg" class="t_color_img"></li>
-                    <li><img src="./img/honban/tak_07.jpg" class="t_color_img"></li>
-                    <li><img src="./img/honban/tak_08.jpg" class="t_color_img"></li>
-                </ul>
+                            <!-- テーブルカラー  -->
+                            <p class="mini_title">テーブルカラー</p>
+                            <ul id="btn_01" class="btn_table">
+                                <li><img src="./img/honban/tak_01.jpg" class="t_color_img"></li>
+                                <li><img src="./img/honban/tak_02.jpg" class="t_color_img"></li>
+                                <li><img src="./img/honban/tak_03.jpg" class="t_color_img"></li>
+                                <li><img src="./img/honban/tak_04.jpg" class="t_color_img"></li>
+                                <li><img src="./img/honban/tak_05.jpg" class="t_color_img"></li>
+                                <li><img src="./img/honban/tak_06.jpg" class="t_color_img"></li>
+                                <li><img src="./img/honban/tak_07.jpg" class="t_color_img"></li>
+                                <li><img src="./img/honban/tak_08.jpg" class="t_color_img"></li>
+                            </ul>
 
-                <!-- 脚カラー  -->
 
-                <!--
+
+                            <form id="contactForm" name="contactForm" method="post" action="form.php">
+                                <input type="hidden" name="path" id="path">
+                                <input id="send" class="Form-Btn02" type="submit" value="問い合わせフォームへ進む"></p>
+                            </form>
+
+                            <!-- 脚カラー  -->
+
+                            <!--
             <p class="mini_title">脚カラー</p>
             -->
 
-                <!-- フレームタイプ -->
-                <p class="mini_title">フレームタイプ</p>
+                            <!-- ========= フレームタイプ ========= -->
 
-                <ul id="btn_ashi" class="btn_ashi">
-                    <li><img src="./img/t_ashi/t_ashi_black.jpg" class="t_color_img_02"></li>
-                    <li><img src="./img/t_ashi/t_ashi_block.jpg" class="t_color_img_02"></li>
+                            <!-- 
+                            <p class="mini_title">フレームタイプ</p>
 
-                    <!--
+                            <ul id="btn_ashi" class="btn_ashi">
+                                <li><img src="./img/t_ashi/t_ashi_black.jpg" class="t_color_img_02"></li>
+                                <li><img src="./img/t_ashi/t_ashi_block.jpg" class="t_color_img_02"></li>
+
+                           
                 <li><img src="./img/t_color/t_03.jpg" class="t_color_img"></li>
-                -->
-                </ul>
+                
+                            </ul>
 
 
 
-                <ul id="f_type" class="f_type" style="display:flex;">
-                    <li>
-                        <a href="#" alt="作った人 夏目智徹, 夏目 智徹,toshiyuki natsume">ブラック</a>
-                    </li>
+                            <ul id="f_type" class="f_type" style="display:flex;">
+                                <li>
+                                    <a href="#" alt="作った人 夏目智徹, 夏目 智徹,toshiyuki natsume">ブラック</a>
+                                </li>
 
-                    <li>
-                        <a href="#">ホワイト</a>
-                    </li>
-                </ul>
+                                <li>
+                                    <a href="#">ホワイト</a>
+                                </li>
+                            </ul>
+
+                            -->
 
 
-                <!-- 
+                            <!-- 
                 <div class="button001">
                     <a href="#">お問い合わせ</a>
                 </div>
     -->
 
 
-                <form id="contactForm" name="contactForm" method="post" action="form.php">
-                    <input type="hidden" name="path" id="path">
-                    <input id="send" class="Form-Btn02" type="submit" value="問い合わせ"></p>
-                </form>
+                        </div> <!-- 右コンテンツ　END -->
+
+                    </div> <!-- flex END -->
+
+
+                </div> <!-- タブ コンテンツ END -->
+
+                <!-- タブ コンテンツ 01 -->
+
+                <div class="tab_panel">
 
 
 
-            </div> <!-- 右コンテンツ　END -->
+
+                    <!-- ＝＝＝ カーボンブラック　＝＝＝ -->
+                    <div class="flex">
+
+                        <!--- 左側　画像コンテンツ --->
+                        <div>
+
+                            <!-- １枚目画像 -->
+                            <ul id="main_image" class="main_image">
+                                <li class="img_hide"><img src="./img/t_bl.jpg"></li>
+                            </ul>
+
+                            <!-- 2枚目画像 
+                            <ul>
+                                <li style="overflow: hidden;height: 545px;"><img src="./img/CarbonF_OVAL.jpg" class="s_img"></li>
+                            </ul>
+                            -->
+
+                        </div>
+                        <!--- 左側　画像コンテンツ END --->
+
+
+                        <!-- 右側コンテンツ  -->
+                        <div>
+
+                            <h2 class="t_title">
+                                <p>テーブルロータイプ</p>
+                                <p>G-Tellus</p>
+                            </h2>
+
+                            <!-- テーブルカラー  -->
+                            <p class="mini_title">テーブルカラー</p>
+                            <ul id="btn" class="btn_table">
+                                <li><img src="./img/mid_001.png" class="t_color_img"></li>
+
+                                <li><img src="./img/mid_002.png" class="t_color_img"></li>
+                            </ul>
+
+                            <!-- 画像パス　POST 用フォーム -->
+                            <form id="contactForm" name="contactForm" method="post" action="form.php">
+                                <input type="hidden" name="path" id="path">
+                                <input id="send" class="Form-Btn02" type="submit" value="問い合わせ">
+                            </form>
+
+                            <!-- 脚カラー  -->
+
+                            <!--
+            <p class="mini_title">脚カラー</p>
+            -->
+
+                            <!-- ========= フレームタイプ ========= -->
+
+                            <!-- 
+                            <p class="mini_title">フレームタイプ</p>
+
+                            <ul id="btn_ashi" class="btn_ashi">
+                                <li><img src="./img/t_ashi/t_ashi_black.jpg" class="t_color_img_02"></li>
+                                <li><img src="./img/t_ashi/t_ashi_block.jpg" class="t_color_img_02"></li>
+
+                           
+                <li><img src="./img/t_color/t_03.jpg" class="t_color_img"></li>
+                
+                            </ul>
+
+
+
+                            <ul id="f_type" class="f_type" style="display:flex;">
+                                <li>
+                                    <a href="#" alt="作った人 夏目智徹, 夏目 智徹,toshiyuki natsume">ブラック</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">ホワイト</a>
+                                </li>
+                            </ul>
+
+                            -->
+
+
+                            <!-- 
+                <div class="button001">
+                    <a href="#">お問い合わせ</a>
+                </div>
+    -->
+
+
+                        </div> <!-- 右コンテンツ　END -->
+
+                    </div> <!-- flex END -->
+
+                </div>
+
+
+            </div>
+
 
         </div>
+
+
+        <!-- タブメニュー END -->
     </div>
 
+
+
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
     <script>
         //　$(window).load(function () {
@@ -397,8 +584,7 @@ require(dirname(__FILE__) . '/functions.php');
             var num_2;
             var num_3; //=== フレームタイプ　の eq 取得
 
-            // 画像URLを取得
-            var targetSrc = $("#main_image li img").eq(0).attr('src');
+            var targetSrc = $("#sub_image li img").eq(0).attr('src');
             $("input[name=path]").val(targetSrc);
 
             /*
@@ -412,7 +598,32 @@ require(dirname(__FILE__) . '/functions.php');
 
 
             // === フレームタイプ
-            $("#sub_image").hide(); // === 「ホワイト」非表示
+            // $("#sub_image").hide(); // === 「ホワイト」非表示
+
+
+            // === タブメニュー　クリック
+            $('.tab_box .tab_btn').click(function() {
+                var index = $('.tab_box .tab_btn').index(this);
+
+                console.log('タブ:index::::' + index);
+
+                $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+                $(this).addClass('active');
+                $('.tab_box .tab_panel').eq(index).addClass('active');
+
+                // === 画像 URL 取得ロジック
+                if (index == 0) {
+                    // 画像URLを取得
+                    var targetSrc = $("#sub_image li img").eq(0).attr('src');
+                    $("input[name=path]").val(targetSrc);
+
+                } else {
+
+                    var targetSrc = $("#main_image li img").eq(0).attr('src');
+                    $("input[name=path]").val(targetSrc);
+                }
+
+            });
 
             // === テーブルカラー選択
             $("#btn li").click(function() {
@@ -422,6 +633,21 @@ require(dirname(__FILE__) . '/functions.php');
 
                 // 画像URLを取得
                 targetSrc = $("#main_image li img").eq(num).attr('src');
+                $("input[name=path]").val(targetSrc);
+                console.log(targetSrc);
+            });
+
+            //============== ホワイトテーブル　色変え
+            $("#sub_image li").eq(0).show();
+
+            // === テーブルカラー選択
+            $("#btn_01 li").click(function() {
+                num = $("#btn_01 li").index(this);
+                $("#sub_image li").hide();
+                $("#sub_image li").eq(num).show();
+
+                // 画像URLを取得
+                targetSrc = $("#sub_image li img").eq(num).attr('src');
                 $("input[name=path]").val(targetSrc);
                 console.log(targetSrc);
             });

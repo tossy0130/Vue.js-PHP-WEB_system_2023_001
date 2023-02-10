@@ -1,6 +1,10 @@
 
 /*** ========= 追加 CSS ========= ***/
 
+html{
+    background: #e5e5e5;
+}
+
 body {
     font-family: 'Noto Sans JP',
     'Yu Gothic Medium',
@@ -61,7 +65,7 @@ left: 150%;top: -20px;
 
 /* === セレクトボックス ===*/
 .select {
-    background: #eaedf2;height: 40px;width: 300px;
+    background: #fff;height: 40px;width: 300px;
     border-radius: 5px;position: relative;z-index: 1;left: 6%;
 }
 
@@ -94,7 +98,7 @@ select {
     }
 }
 
-.Form-Item {padding-top: 24px;padding-bottom: 24px; width: 100%;
+.Form-Item {padding-top: 5px;padding-bottom: 5px; width: 100%;
  align-items: center;
 }
 
@@ -130,6 +134,8 @@ select {
     font-size: 18px;
     position: relative;
     left: 6%;
+    top: 10px;
+    margin: 5px 0 20px 0;
 }
 
 @media screen and (max-width: 480px) {
@@ -180,7 +186,7 @@ select {
     height: 48px;
     flex: 1;
     width: 100%;
-    background: #eaedf2;
+    background: #fff;
     font-size: 18px;
 
     max-width: 485px;
@@ -206,7 +212,7 @@ select {
     flex: 1;
     width: 100%;
     max-width: 480px;
-    background: #eaedf2;
+    background: #fff;
     font-size: 18px;
 }
 
@@ -224,17 +230,34 @@ select {
     border-radius: 4px;margin-top: 32px;margin-left: auto;
     margin-right: auto;padding-top: 20px;padding-bottom: 20px;
     width: 280px;display: block;
-    letter-spacing: 0.05em;background: #fcea9a;
-    font-weight: bold;font-size: 16px;
-    border: none;color: #666;letter-spacing: 0.17em;
+
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    font-size: 16px;
+
+    background: linear-gradient(to top, rgb(42, 191, 171), #32d3bb);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+
+    border: none;
+    letter-spacing: 0.17em;
 }
 
 .Form-Btn02 {
     border-radius: 4px;margin-top: 68px;
     margin-left: auto;margin-right: auto;padding-top: 20px;
     padding-bottom: 20px;width: 280px;display: block;
-    letter-spacing: 0.05em;background: #fcea9a;
-    font-weight: bold;font-size: 16px;border: none;color: #666;
+
+    background: linear-gradient(to top, rgb(42,191,171), #32d3bb);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+
+    letter-spacing: 0.05em;
+  
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+  
     letter-spacing: 0.17em;
 }
 

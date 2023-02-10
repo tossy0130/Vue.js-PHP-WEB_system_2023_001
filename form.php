@@ -95,6 +95,8 @@ try {
         .f_content_01 {
             max-width: 720px;
             margin: 0 auto;
+            position: relative;
+            top: 20px;
         }
     </style>
 </head>
@@ -150,6 +152,22 @@ try {
                                                                             echo h($_POST['user_name_kana']);
                                                                         } ?>" placeholder="（例）ヤマダタロウ" name="user_name_kana" v-model="user_name_kana" @input="$v.user_name_kana.$touch()">
                     <span v-if="$v.user_name_kana.$error" class="err_span">※入力欄が空欄になっています。お名前（カタカナ）でご入力ください。</span>
+                </p>
+            </div>
+
+
+            <!-- 会社名 -->
+            <div class="Form-Item">
+                <p class="Form-Item-Label">会社名<span class="Form-Item-Label-Required">必須</span>
+                    <span class="holder_text" id="pl_02">（例）株式会社●●</span>
+                </p>
+
+                <p>
+                    <!-- Vue.js エラーメッセージ -->
+                    <input type="text" class="Form-Item-Input" value="<?php if (!empty($_POST['company_name'])) {
+                                                                            echo h($_POST['company_name']);
+                                                                        } ?>" placeholder="（例）株式会社●●" name="company_name" v-model="company_name" @input="$v.company_name.$touch()">
+                    <span v-if="$v.company_name.$error" class="err_span">※入力欄が空欄になっています。お名前（カタカナ）でご入力ください。</span>
                 </p>
             </div>
 
@@ -262,6 +280,7 @@ try {
             data: {
                 user_name: '',
                 user_name_kana: '',
+                company_name: '',
                 tel: '',
                 email_address: '',
                 Inquiry_type: '',
@@ -275,6 +294,9 @@ try {
                 },
                 // 名前（カタカナ）
                 user_name_kana: {
+                    required
+                },
+                company_name: {
                     required
                 },
                 // 電話番号

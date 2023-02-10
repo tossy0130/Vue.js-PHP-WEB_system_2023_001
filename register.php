@@ -12,6 +12,7 @@ session_start();
 // 変数初期化
 $user_name = ""; // 名前
 $user_name_kana = ""; // 名前（カナ）
+$company_name = "";
 $tel = ""; // 電話
 $email_address = ""; // メールアドレス
 $Inquiry_type = ""; // 問い合わせ 種別
@@ -41,6 +42,13 @@ if (empty($_SESSION['token_one'])) {
         $user_name_kana = $_POST['user_name_kana'];
         $_SESSION['user_name_kana'] = $user_name_kana;
     }
+
+     // === 会社名
+    if (isset($_POST['company_name'])) {
+        $user_name_kana = $_POST['company_name'];
+        $_SESSION['company_name'] = $user_name_kana;
+    }
+
     // === 電話番号
     if (isset($_POST['tel'])) {
         $tel = $_POST['tel'];
@@ -132,6 +140,19 @@ try {
 
             <!-- 確認 アイテム -->
             <div class="Form-Item02">
+                <p class="Form-Item-Label">会社名<span class="Form-Item-Label-Required">必須</span>
+                </p>
+
+                <p>
+                    <?php if (!empty($company_name)) {
+                        echo h($company_name);
+                    } ?>
+                </p>
+            </div>
+            <!-- 確認 アイテム END -->
+
+            <!-- 確認 アイテム -->
+            <div class="Form-Item02">
                 <p class="Form-Item-Label">電話番号<span class="Form-Item-Label-Required">必須</span>
                 </p>
 
@@ -187,7 +208,7 @@ try {
             <!-- 値を POST する -->
             <input type="hidden" name="h_user_name" value="<?php print h($user_name); ?>">
             <input type="hidden" name="h_user_name_kana" value="<?php print h($user_name_kana); ?>">
-            <input type="hidden" name="h_tel" value="<?php print h($tel); ?>">
+            <input type="hidden" name="company_name" value="<?php print h($company_name); ?>">
             <input type="hidden" name="h_email_address" value="<?php print h($email_address); ?>">
             <input type="hidden" name="h_Inquiry_type" value="<?php print h($Inquiry_type); ?>">
             <input type="hidden" name="h_toiawase_text" value="<?php print h($toiawase_text); ?>">
