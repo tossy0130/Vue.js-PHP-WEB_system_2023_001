@@ -19,6 +19,36 @@ if (isset($_POST['path'])) {
 }
 
 
+// === 画像パスの g_01 を取得
+$img_cut = substr($img_path, 6, 4);
+$img_number = "";
+
+//=== HTML メール送信用　画像ナンバー
+if (false !== strpos($img_cut, '01')) {
+    $img_number = "1";
+} else if (false !== strpos($img_cut, '02')) {
+    $img_number = "2";
+} else if (false !== strpos($img_cut, '03')) {
+    $img_number = "3";
+} else if (false !== strpos($img_cut, '04')) {
+    $img_number = "4";
+} else if (false !== strpos($img_cut, '05')) {
+    $img_number = "5";
+} else if (false !== strpos($img_cut, '06')) {
+    $img_number = "6";
+} else if (false !== strpos($img_cut, '07')) {
+    $img_number = "7";
+} else if (false !== strpos($img_cut, '08')) {
+    $img_number = "8";
+} else if (false !== strpos($img_cut, 'bl')) {
+    $img_number = "20";
+    print($img_number);
+}
+
+
+//===
+
+
 // ================= フォーム値　判別 ===============*/
 
 //====== POSTされていたら画面遷移
@@ -37,19 +67,27 @@ if (
 }
 */
 
-
 try {
 
     //=== DB 接続情報
-    $pdo = new PDO(Getdb::DNS, Getdb::USER, Getdb::PASS);
+    $pdo = new PDO(GetDB::DNS, GetDB::USER, GetDB::PASS);
 
     // ======  （トランザクション） トランザクション開始 ======
     $pdo->beginTransaction();
+
+    // PDOが例外を投げるように設定する
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "接続に成功しました";
 } catch (PDOException $e) {
-    print('Error' . $e->getMessage());
+    $e->getMessage();
+    echo "接続に失敗しました: " . $e->getMessage();
 } finally {
     $pdo = null;
 }
+
+
+
+
 
 ?>
 
@@ -212,12 +250,20 @@ try {
                 <p class="Form-Item-Label">お問い合わせ 種別<span class="Form-Item-Label-Required">必須</span></p>
                 <div class="select">
                     <select name="Inquiry_type" id="" v-model="Inquiry_type" @blur="$v.Inquiry_type.$touch()">
+
+                        <!--
                         <option value="射出成形について">射出成形について</option>
                         <option value="ウォータージェットついて">ウォータージェットついて</option>
+                                                            -->
+
                         <option value="ガラステーブルについて">ガラステーブルについて</option>
+
+                        <!--
                         <option value="クライシスについて">クライシスについて</option>
                         <option value="その他 設備について">その他 設備について</option>
+                                                            
                         <option value="会社概要">会社概要</option>
+                        -->
                         <option value="お見積もり">お見積もり</option>
                         <option value="その他 お問い合わせ">その他 お問い合わせ</option>
                     </select>
@@ -249,6 +295,10 @@ try {
             <!--
             <input :disabled="$v.$invalid" type="submit" class="Form-Btn" value="確認画面へ進む">
 -->
+            <!-- メール画像　送信用 -->
+            <input type="hidden" value="<?php echo h($img_number) ?>" name="img_number">
+            <input type="hidden" value="<?php echo h($token_one); ?>" name="token_one">
+
             <input type="submit" class="Form-Btn" value="確認画面へ進む">
 
         </form>

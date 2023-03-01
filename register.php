@@ -18,6 +18,18 @@ $email_address = ""; // メールアドレス
 $Inquiry_type = ""; // 問い合わせ 種別
 $toiawase_text = "";  // 問い合わせ内容
 
+$img_number = ""; // メール画像　送信　判別用
+
+//=== form.php トークン　取得 ===
+if (isset($_POST['token_one'])) {
+    $toke_one = $_POST['token_one'];
+    // === トークンが空の時は、リダイレクト処理
+    if ($toke_one == "") {
+        header("Location: {$redirect_url}");
+    }
+}
+
+
 
 // ========= token トークンチェック =========
 // トークンがない場合は、リダイレクトさせる
@@ -27,66 +39,114 @@ if (empty($_SESSION['token_one'])) {
 } else {
     // トークンがあれば 処理を進める
 
-    $token_two = uniqid('', true);
-    // セッション変数へ格納
-    $_SESSION['token_two'] = $token_two;
+    if ($_SESSION['token_one'] == $toke_one) {
 
-    // === フォームの値取得 POST
-    // === 名前
-    if (isset($_POST['user_name'])) {
-        $user_name = $_POST['user_name'];
-        $_SESSION['user_name'] = $user_name;
-    }
-    // === 名前（カナ）
-    if (isset($_POST['user_name_kana'])) {
-        $user_name_kana = $_POST['user_name_kana'];
-        $_SESSION['user_name_kana'] = $user_name_kana;
-    }
+        $token_two = uniqid('', true);
+        // セッション変数へ格納
+        $_SESSION['token_two'] = $token_two;
 
-     // === 会社名
-    if (isset($_POST['company_name'])) {
-        $user_name_kana = $_POST['company_name'];
-        $_SESSION['company_name'] = $user_name_kana;
-    }
+        // === フォームの値取得 POST
+        // === 名前
+        if (isset($_POST['user_name'])) {
+            $user_name = $_POST['user_name'];
+            $_SESSION['user_name'] = $user_name;
+        }
+        // === 名前（カナ）
+        if (isset($_POST['user_name_kana'])) {
+            $user_name_kana = $_POST['user_name_kana'];
+            $_SESSION['user_name_kana'] = $user_name_kana;
+        }
 
-    // === 電話番号
-    if (isset($_POST['tel'])) {
-        $tel = $_POST['tel'];
-        $_SESSION['tel'] = $tel;
-    }
-    // === メールアドレス
-    if (isset($_POST['email_address'])) {
-        $email_address = $_POST['email_address'];
-        $_SESSION['email_address'] = $email_address;
-    }
-    // === 問い合わせ 種別
-    if (isset($_POST['Inquiry_type'])) {
-        $Inquiry_type = $_POST['Inquiry_type'];
-        $_SESSION['Inquiry_type'] = $Inquiry_type;
-    }
-    // === 問い合わせ 内容
-    if (isset($_POST['toiawase_text'])) {
-        $toiawase_text = $_POST['toiawase_text'];
-        $_SESSION['toiawase_text'] = $toiawase_text;
+        // === 会社名
+        if (isset($_POST['company_name'])) {
+            $company_name = $_POST['company_name'];
+            $_SESSION['company_name'] = $company_name;
+        }
+
+        // === 電話番号
+        if (isset($_POST['tel'])) {
+            $tel = $_POST['tel'];
+            $_SESSION['tel'] = $tel;
+        }
+        // === メールアドレス
+        if (isset($_POST['email_address'])) {
+            $email_address = $_POST['email_address'];
+            $_SESSION['email_address'] = $email_address;
+        }
+        // === 問い合わせ 種別
+        if (isset($_POST['Inquiry_type'])) {
+            $Inquiry_type = $_POST['Inquiry_type'];
+            $_SESSION['Inquiry_type'] = $Inquiry_type;
+        }
+        // === 問い合わせ 内容
+        if (isset($_POST['toiawase_text'])) {
+            $toiawase_text = $_POST['toiawase_text'];
+            $_SESSION['toiawase_text'] = $toiawase_text;
+        }
+
+        // === メール　画像送信用　判別
+        if (isset($_POST['img_number'])) {
+            $img_number = $_POST['img_number'];
+            $_SESSION['img_number'] = $img_number;
+        }
+    } else {
+        // ========= エラー処理 =========== リダイレクト
+        header("Location: {$redirect_url}");
     }
 } // =========== END if
 
+
+//================================== MySQL インサート処理 =============================
 try {
 
     //=== DB 接続情報
-    $pdo = new PDO(Getdb::DNS, Getdb::USER, Getdb::PASS);
+    $pdo = new PDO(GetDB::DNS, GetDB::USER, GetDB::PASS);
 
     // ======  （トランザクション） トランザクション開始 ======
     $pdo->beginTransaction();
 
-    // $stmt = $pdo->prepare()
+    // PDOが例外を投げるように設定する
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "接続に成功しました";
 
+    // ＊＊＊　インサート処理　＊＊＊
+    $stmt = $pdo->prepare("INSERT INTO mid_form(
+        username,username_kana,company_name,email_address,tel,
+        toiawase_syubetu,toiawase_text,img_number,created_at,updated_at
+    ) VALUES (
+        :column_01, :column_02, :column_03, :column_04, :column_05, 
+        :column_06, :column_07, :column_08, :column_09, :column_10
+    )");
+
+    // === 日付け　オブジェクト
+    $created_at = Get_Datetime();
+    $updated_at = Get_Datetime();
+
+    $stmt->bindParam(':column_01', $user_name, PDO::PARAM_STR); // 名前
+    $stmt->bindParam(':column_02', $user_name_kana, PDO::PARAM_STR); // 名前　カナ
+    $stmt->bindParam(':column_03', $company_name, PDO::PARAM_STR); // 会社名
+    $stmt->bindParam(':column_04', $email_address, PDO::PARAM_STR); // メールアドレス
+    $stmt->bindParam(':column_05', $tel, PDO::PARAM_STR); // 電話番号
+    $stmt->bindParam(':column_06', $Inquiry_type, PDO::PARAM_STR); // 問い合わせ種別
+    $stmt->bindParam(':column_07', $toiawase_text, PDO::PARAM_STR); // 問い合わせ
+    $stmt->bindParam(':column_08', $img_number, PDO::PARAM_STR); // メール送信画像　用 
+    $stmt->bindParam(':column_09', $created_at, PDO::PARAM_STR);
+    $stmt->bindParam(':column_10', $updated_at, PDO::PARAM_STR);
+
+    $res = $stmt->execute();
+
+    if ($res) {
+        $pdo->commit();
+        print("登録完了");
+    }
 } catch (PDOException $e) {
     $e->getMessage();
+    $pdo->rollBack();
+    echo "接続に失敗しました: " . $e->getMessage();
 } finally {
     $pdo = null;
 }
-
+//================================== MySQL インサート処理 END =============================
 
 ?>
 
@@ -212,6 +272,10 @@ try {
             <input type="hidden" name="h_email_address" value="<?php print h($email_address); ?>">
             <input type="hidden" name="h_Inquiry_type" value="<?php print h($Inquiry_type); ?>">
             <input type="hidden" name="h_toiawase_text" value="<?php print h($toiawase_text); ?>">
+
+            <input type="hidden" name="img_number" value="<?php print h($img_number); ?>">
+
+            <input type="hidden" name=" token_two" value="<?php print h($token_two); ?>">
 
 
         </form> <!-- END form -->

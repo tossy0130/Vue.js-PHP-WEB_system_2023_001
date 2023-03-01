@@ -5,9 +5,7 @@ ini_set('display_errors', "On");
 // 
 require(dirname(__FILE__) . '/functions.php');
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -39,310 +37,268 @@ require(dirname(__FILE__) . '/functions.php');
         <link href="css/style.css" rel="stylesheet">
         -->
 
+    <link href="css/index.css" rel="stylesheet">
+
+    <!-- 日本語フォント 01 -->
+    <link rel="stylesheet" type="text/css" href="http://mplus-fonts.sourceforge.jp/webfonts/general-j/mplus_webfonts.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
+    <!-- Vue.js CDN -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vueinview@1.0.5/dist/vue-inview.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+    <script src="https://unpkg.com/vue@3"></script>
+
     <style>
-        body {
-            font-family: "Helvetica Neue", Arial,
-                "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-        }
-
-        .s_img {
-            width: 132%;
-            height: auto;
-            position: relative;
-            left: -20%;
-        }
-
-        .show {
-            display: block;
-        }
-
-        .img_hide {
-            display: none;
-        }
-
-        .flex {
-            display: flex;
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-        .flex>div:nth-child(1) {
-            width: 55%;
-        }
-
-        .flex>div:nth-child(2) {
-            width: 40%;
-        }
-
-        .main_image {
-            list-style: none;
-        }
-
-        .sub_image {
-            list-style: none;
-        }
-
-
-        /*================ 右側コンテンツ ================*/
-        /* === ボタン （テーブル用） */
-        .btn_table {
-            display: flex;
-            list-style: none;
-            margin: 0 0 0 8px;
-            flex-wrap: wrap;
-        }
-
-        .btn_table>li {
-            margin: 16px 0.4em;
-            width: 29%;
-        }
-
-
-        .t_color_img {
-            width: 60%;
-            height: 115%;
-        }
-
-        .t_color_img_02 {
-            width: 60%;
-            height: 85%;
-        }
-
-        h2.t_title {
-            background: #4A4E4F;
-            margin: 0 0px 35px 50px;
-        }
-
-        h2.t_title>p:nth-child(1) {
-            font-size: 21px;
-            color: #fff;
-            border-bottom: dotted 1px #fff;
-            padding: 5px 0px;
-            margin: 10px 25px;
-        }
-
-        h2.t_title>p:nth-child(2) {
-            font-size: 18px;
-            color: #fff;
-            padding: 3px 0;
-            margin: 0 0 0px 25px;
-        }
-
-        .mini_title {
-            margin: 15px 0 15px 50px;
-        }
-
-        /* === 脚　カラー === */
-        .btn_ashi {
-            display: flex;
-            list-style: none;
-            margin: 0 0 0 8px;
-        }
-
-        .btn_ashi>li {
-            margin: 0 0.2em
-        }
-
-        /* === フレームタイプ === */
-        .f_type {
-            display: flex;
-        }
-
-        .button003 {
-            margin: 15px 10px 0px 25px;
-        }
-
-        .button003 a {
-            background: transparent;
-            border-radius: 15px;
-            position: relative;
-            justify-content: space-around;
-            align-items: center;
-            padding: 20px 40px;
-            color: #313133;
-            transition: 0.3s ease-in-out;
-            font-weight: 500;
-            text-decoration: none;
-            border: 2px solid #999;
-            margin: 0px 15px;
-            font-size: 13px;
-        }
-
-        .button003 a:hover {
-            background: #313131;
-            color: #FFF;
-        }
-
-        .button001 {}
-
-        .button001 a {
-            text-decoration: none;
-            text-align: center;
-            display: block;
-            color: #333;
-            background: transparent;
-            border-radius: 15px;
-            position: relative;
-            justify-content: space-around;
-            align-items: center;
-            padding: 20px 40px;
-            color: #313133;
-            transition: 0.3s ease-in-out;
-            font-weight: 500;
-            text-decoration: none;
-            border: 2px solid #999;
-            margin: 0px 15px;
-            font-size: 13px;
-            top: 44px;
-            width: 61%;
-            left: 5%;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .button001 a:hover {
-            background: #313131;
-            color: #FFF;
-        }
-
-        /*========= テーブルタイプ ======== */
-
-        .f_type>li {
-            list-style: none;
-            position: relative;
-            top: -35px;
-        }
-
-        /*=== シルバー　ボタン ===*/
-        .f_type>li:nth-child(1)>a {
-            display: inline-block;
-            padding: 1em 1.3em;
-            text-decoration: none;
-            text-align: center;
-            display: block;
-            color: #333;
-            background: transparent;
-            border-radius: 15px;
-            position: relative;
-            justify-content: space-around;
-            align-items: center;
-            padding: 12px 35px;
-            color: #313133;
-            transition: 0.3s ease-in-out;
-            font-weight: 500;
-            text-decoration: none;
-            border: 2px solid #999;
-            margin: 0px 15px;
-            font-size: 13px;
-            top: 50px;
-            width: 52%;
-            left: -10%;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .f_type>li:nth-child(2)>a {
-            display: inline-block;
-            padding: 1em 1.3em;
-            text-decoration: none;
-            text-align: center;
-            display: block;
-            color: #333;
-            background: transparent;
-            border-radius: 15px;
-            position: relative;
-            justify-content: space-around;
-            align-items: center;
-            padding: 12px 35px;
-            color: #313133;
-            transition: 0.3s ease-in-out;
-            font-weight: 500;
-            text-decoration: none;
-            border: 2px solid #999;
-            margin: 0px 15px;
-            font-size: 13px;
-            top: 50px;
-            width: 52%;
-            left: 31%;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .f_type>li:nth-child(1)>a:hover {
-            background: #313131;
-            color: #FFF;
-        }
-
-        .f_type>li:nth-child(2)>a:hover {
-            background: #313131;
-            color: #FFF;
-        }
-
-        /* ========== タブメニュー ============= */
-
-        /*タブ実装*/
-        .tab_box {
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tab_box .btn_area {
-            margin: 0 10px;
-            display: -webkit-box;
-            display: flex;
-        }
-
-        .tab_box .tab_btn {
-            width: 220px;
-            padding: 8px 0;
-            color: #333;
-            background: #f5f7f8;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease 0s;
-        }
-
-        .tab_box .tab_btn+.tab_btn {
-            margin-left: 8px;
-        }
-
-        .tab_box .tab_btn:hover {
-            background-color: #dce1e4;
-        }
-
-        .tab_box .tab_btn.active {
-            background: #277595;
-            color: #fff;
-        }
-
-        .tab_box .panel_area {
-            border: solid 1px #e3ebf3;
+        #app {
+            border-radius: 4px;
             padding: 20px;
-            width: 1200px;
-            background: #fff;
-            box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+            transition: all 0.8s;
+        }
+
+        .container_001 {
+            background-color: #fff;
+        }
+
+        .head_content {
+            width: 1000px;
             margin: 0 auto;
         }
 
-        .tab_box .tab_panel {
-            display: none;
+        .first_img_box {
+            width: 100%;
+            height: 60em;
         }
 
-        .tab_box .tab_panel.active {
-            display: block;
+        .first_img_div {
+            width: 15%;
+            position: relative;
+            left: 40%;
+            top: 36%;
+        }
+
+        /** === ヘッダーメニュー === */
+        .header_menu {
+            display: flex;
+        }
+
+        .header_left {
+            position: relative;
+            top: 20px;
+            left: 0%;
+        }
+
+        #menu_logo_img {
+            width: 18%;
+            height: auto;
+        }
+
+        .header_menu_ul {
+            display: flex;
+        }
+
+        .header_menu_ul>li {
+            padding: 0 50px 0px 0;
+            list-style: none;
+        }
+
+
+        .header_menu_ul>li>a {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /** === ヘッダーキャッチコピー */
+
+        .h_text_box {
+            display: flex;
+            position: relative;
+            top: 55px;
+            font-size: 3.8vw;
+        }
+
+
+        .catch_text_01 {
+            background: linear-gradient(114deg, rgba(201, 203, 202, 1) 0%, rgba(160, 142, 130, 1) 35%, rgba(193, 169, 163, 1) 100%);
+            color: transparent;
+            -webkit-background-clip: text;
+        }
+
+        .catch_text_02 {
+            background: linear-gradient(114deg, rgba(201, 203, 202, 1) 0%, rgba(160, 142, 130, 1) 35%, rgba(193, 169, 163, 1) 100%);
+            color: transparent;
+            -webkit-background-clip: text;
+        }
+
+        .gt_01 {
+            font-size: 4.8vw !important;
+        }
+
+        #mozi_01 {
+            margin-right: 20px;
+        }
+
+        #mozi_02 {
+            margin-right: 20px;
+        }
+
+        .h_text_02 {
+            position: relative;
+            top: 230px;
+            font-size: 2.2vw;
+        }
+
+        .h_text_03 {
+            position: relative;
+            top: 405px;
+            font-size: 2.2vw;
+        }
+
+        .h_text_04 {
+            position: relative;
+            top: 605px;
+            font-size: 2.2vw;
         }
     </style>
 
 </head>
 
 <body>
+
+    <!-- =============================== ヘッダーコンテンツ ============================ -->
+
+    <div class="container_001">
+
+        <div id="sh" class="first_img_box">
+            <div class="first_img_div">
+                <img src="./img/ds/logo.jpg" id="logo_img">
+            </div>
+        </div>
+
+
+        <div class="head_content">
+
+            <!-- メニュー -->
+            <div class="header_menu">
+
+                <div class="header_left">
+                    <img src="./img/ds/logo.jpg" id="menu_logo_img">
+                </div>
+
+                <div class="header_right">
+                    <ul class="header_menu_ul">
+                        <!--
+                        <li><a href="#">a</a></li>
+                        <li><a href="#">a</a></li>
+                        <li><a href="#">a</a></li>
+                        <li><a href="#">a</a></li>
+                        <li><a href="#">a</a></li>
+                        <li><a href="#">a</a></li>
+    -->
+                    </ul>
+                </div>
+
+
+            </div> <!-- header_menu -->
+
+            <div class="h_text">
+                <div class="h_text_box">
+                    <div class="h_text_box_min catch_text_01">
+                        ノ
+                    </div>
+                    <div class="h_text_box_min catch_text_02">
+                        フ
+                    </div>
+                    <div class="h_text_box_min catch_text_02">
+                        ュ
+                    </div>
+                    <div class="h_text_box_min catch_text_01" id="mozi_01">
+                        レ
+                    </div>
+
+                    <div class="h_text_box_min catch_text_01">
+                        ガ
+                    </div>
+                    <div class="h_text_box_min catch_text_02">
+                        ラ
+                    </div>
+                    <div class="h_text_box_min catch_text_02">
+                        ス
+                    </div>
+                    <div class="h_text_box_min catch_text_01">
+                        テ
+                    </div>
+                    <div class="h_text_box_min catch_text_01">
+                        ー
+                    </div>
+                    <div class="h_text_box_min catch_text_01">
+                        ブ
+                    </div>
+                    <div class="h_text_box_min catch_text_01" id="mozi_02">
+                        ル
+                    </div>
+
+                    <div class="h_text_box_min catch_text_01 gt_01">
+                        G
+                    </div>
+                    <div class="h_text_box_min catch_text_01 gt_01">
+                        -
+                    </div>
+                    <div class="h_text_box_min catch_text_01 gt_01">
+                        T
+                    </div>
+                    <div class="h_text_box_min catch_text_01 gt_01">
+                        l
+                    </div>
+                    <div class="h_text_box_min catch_text_01 gt_01">
+                        l
+                    </div>
+                    <div class="h_text_box_min catch_text_01 gt_01">
+                        u
+                    </div>
+                    <div class="h_text_box_min catch_text_01 gt_01">
+                        s
+                    </div>
+
+                </div>
+
+            </div> <!-- h_text END -->
+
+
+            <div class="h_text_02">
+                G-Tllus Carbon saitonituite<br />
+                カーボン繊維入りガラス
+            </div>
+
+            <div class="h_text_03">
+                カラーガラス<br />
+                NSGインテリア株式会社製<br />
+                色名・色番
+            </div>
+
+            <div class="h_text_04">
+                外寸：W172cm×D86cm×H42cm<br />
+                重量：55Kg
+            </div>
+
+
+            <div id="app">
+                <div>
+                    <div class="box"><img src="./img/ds/01.jpg"></div>
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- container -->
+
+    <!-- ==================================== ヘッダー END ====================================== -->
+
+
 
     <div class="container">
 
@@ -465,9 +421,6 @@ require(dirname(__FILE__) . '/functions.php');
 
                 <div class="tab_panel">
 
-
-
-
                     <!-- ＝＝＝ カーボンブラック　＝＝＝ -->
                     <div class="flex">
 
@@ -476,7 +429,7 @@ require(dirname(__FILE__) . '/functions.php');
 
                             <!-- １枚目画像 -->
                             <ul id="main_image" class="main_image">
-                                <li class="img_hide"><img src="./img/t_bl.jpg"></li>
+                                <li class="img_hide"><img src="./img/t_bl_001.jpg"></li>
                             </ul>
 
                             <!-- 2枚目画像 
@@ -499,10 +452,8 @@ require(dirname(__FILE__) . '/functions.php');
 
                             <!-- テーブルカラー  -->
                             <p class="mini_title">テーブルカラー</p>
-                            <ul id="btn" class="btn_table">
-                                <li><img src="./img/mid_001.png" class="t_color_img"></li>
-
-                                <li><img src="./img/mid_002.png" class="t_color_img"></li>
+                            <ul id="btn" class="btn_table_02">
+                                <li><img src="./img/te-bulu_01.jpg" class="t_color_img"></li>
                             </ul>
 
                             <!-- 画像パス　POST 用フォーム -->
@@ -565,9 +516,7 @@ require(dirname(__FILE__) . '/functions.php');
 
         </div>
 
-
-        <!-- タブメニュー END -->
-    </div>
+    </div><!-- END container -->
 
 
 
@@ -664,15 +613,7 @@ require(dirname(__FILE__) . '/functions.php');
                     $("#sub_image").hide();
                     $("#main_image").fadeIn('fast');
 
-                    /*
-                    $("#main_image li").eq(0).hide();
-                    $("#main_image li").eq(0).hide(); 
-                    $("#main_image li").eq(0).fadeOut('normal'); 
 
-                    $("#main_image li").eq(10).removeClass("img_hide");
-                    $("#main_image li").eq(10).show(); 
-                    $("#main_image li").eq(10).fadeIn('normal'); 
-                    */
                 } else if (num_2 == 1) {
                     //=====================
                     // === ホワイトだったら
@@ -689,37 +630,6 @@ require(dirname(__FILE__) . '/functions.php');
 
 
                 }
-
-                /*
-                if(num == 2 && num_2 == 0 || num == 6 && num_2 == 0) {
-                    $("#main_image li").hide();
-                    $("#main_image li").eq(8).show();
-
-                    console.log("num:::" + num);
-                    console.log("num_2:::" + num_2);
-
-                }else if(num == 0 && num_2 == 0 || num == 4 && num_2 == 0) {
-                    $("#main_image li").hide();
-                    $("#main_image li").eq(9).show();
-
-                    console.log("num:::" + num);
-                    console.log("num_2:::" + num_2);
-
-                } else if (num == 2 && num_2 == 1 || num == 6 && num_2 == 1) {
-                    $("#main_image li").hide();
-                    $("#main_image li").eq(2).show();
-
-                    console.log("num:::" + num);
-                    console.log("num_2:::" + num_2);
-
-                } else if (num == 0 && num_2 == 1 || num == 4 && num_2 == 1) {
-                    $("#main_image li").hide();
-                    $("#main_image li").eq(0).show();
-
-                    console.log("num:::" + num);
-                    console.log("num_2:::" + num_2);
-                }
-                */
 
             });
 
@@ -742,15 +652,7 @@ require(dirname(__FILE__) . '/functions.php');
                     $("#sub_image").hide();
                     $("#main_image").fadeIn('fast');
 
-                    /*
-                    $("#main_image li").eq(0).hide();
-                    $("#main_image li").eq(0).hide(); 
-                    $("#main_image li").eq(0).fadeOut('normal'); 
 
-                    $("#main_image li").eq(10).removeClass("img_hide");
-                    $("#main_image li").eq(10).show(); 
-                    $("#main_image li").eq(10).fadeIn('normal'); 
-                    */
                 } else if (num_3 == 1) {
                     //=====================
                     // === ホワイトだったら
@@ -785,36 +687,9 @@ require(dirname(__FILE__) . '/functions.php');
         });
     </script>
 
-    <!-- Ajax 送信 
+    <script src="./js/top.js"></script>
 
-    <script>
-        $('#send').click(function() {
-            // post データで送るデータを定義
-            var data = {
-                path: $('#path').val()
-            };
 
-            $.ajax({
-                type: "post",
-                url: "form.php",
-                data: data,
-                // Ajax 成功時
-                success: function(data, dataType) {
-                    // php から返ってきたデータを表示
-                    alert(data);
-                },
-
-                // Ajax 通信失敗の場合
-                error: function() {
-                    alert('Ajax通信が失敗しました。');
-                }
-            });
-
-            return false;
-
-        });
-    </script>
-    -->
 
 </body>
 

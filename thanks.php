@@ -2,6 +2,7 @@
 
 // エラーを出力
 ini_set('display_errors', "On");
+
 // 
 require(dirname(__FILE__) . '/functions.php');
 
@@ -30,6 +31,19 @@ $h_email_address = ""; // メールアドレス
 $h_Inquiry_type = ""; // 問い合わせ 種別
 $h_toiawase_text = "";  // 問い合わせ内容
 
+$img_number = ""; // メール送信　時　画像判別用
+
+$token_two = "";
+
+if (isset($_POST['token_two'])) {
+    // === POST のトークン 2 が空だったら、リダイレクト
+    if (empty($_POST['token_two'])) {
+        header("Location: {$redirect_url}");
+    } else {
+        $token_two = $_POST['token_two'];
+    }
+}
+
 // === トークンチェック
 if (empty($_SESSION['token_two'])) {
 
@@ -37,32 +51,142 @@ if (empty($_SESSION['token_two'])) {
 } else {
     // === トークンありの場合
 
-    // ============ フォームの hidden の値を POST で取得
-    if (isset($_POST['h_user_name'])) {
-        $h_user_name = $_POST['h_user_name'];
-    }
+    // === session と post のトークンが一致した場合
+    if ($_SESSION['token_two'] == $token_two) {
 
-    if (isset($_POST['h_user_name_kana'])) {
-        $h_user_name_kana = $_POST['h_user_name_kana'];
-    }
+        // ============ フォームの hidden の値を POST で取得
+        if (isset($_POST['h_user_name'])) {
+            $h_user_name = $_POST['h_user_name'];
+        }
 
-    if (isset($_POST['h_tel'])) {
-        $h_tel = $_POST['h_tel'];
-    }
+        if (isset($_POST['h_user_name_kana'])) {
+            $h_user_name_kana = $_POST['h_user_name_kana'];
+        }
 
-    if (isset($_POST['h_email_address'])) {
-        $h_email_address = $_POST['h_email_address'];
-    }
+        if (isset($_POST['h_tel'])) {
+            $h_tel = $_POST['h_tel'];
+        }
 
-    if (isset($_POST['h_Inquiry_type'])) {
-        $h_Inquiry_type = $_POST['h_Inquiry_type'];
-    }
+        if (isset($_POST['h_email_address'])) {
+            $h_email_address = $_POST['h_email_address'];
+        }
 
-    if (isset($_POST['h_toiawase_text'])) {
-        $h_toiawase_text = $_POST['h_toiawase_text'];
-    }
+        if (isset($_POST['h_Inquiry_type'])) {
+            $h_Inquiry_type = $_POST['h_Inquiry_type'];
+        }
 
-    $Thanks_Flg = 1;
+        if (isset($_POST['h_toiawase_text'])) {
+            $h_toiawase_text = $_POST['h_toiawase_text'];
+            // === 問い合わせ内容が空の場合は、なしを代入
+            if (empty($h_toiawase_text)) {
+                $h_toiawase_text = "なし";
+            }
+        }
+
+        if (isset($_POST['img_number'])) {
+            $img_number = $_POST['img_number'];
+        }
+
+        // === 送信結果　フラグ 1: 送信完了 2:エラー
+        $Thanks_Flg = 1;
+
+        // ============================ メール送信処理 START ==================================
+
+        // === 送信先
+        $to = $h_email_address;
+
+        // === メールタイトル
+        $subject = "ガラステーブルのお問い合わせを受付致しました。";
+
+        // === Gmail 対策
+        $senderName = base64_encode("test_01@xs810378.xsrv.jp");
+        $senderName = "=?UTF-8?B?{$senderName}?=";
+
+        // === 選択した画像のパスを取得して、img へセットする。
+        $img_path = "";
+
+        switch ($img_number) {
+            case "1":
+                $img_path = "g_01.jpg";
+                break;
+            case "2":
+                $img_path = "g_02.jpg";
+                break;
+            case "3":
+                $img_path = "g_03.jpg";
+                break;
+            case "4":
+                $img_path = "g_04.jpg";
+                break;
+            case "5":
+                $img_path = "g_05.jpg";
+                break;
+            case "6":
+                $img_path = "g_06.jpg";
+                break;
+            case "7":
+                $img_path = "g_07.jpg";
+                break;
+            case "8":
+                $img_path = "g_08.jpg";
+                break;
+            case "20":
+                $img_path = "t_bl.jpg"; // === カーボンブラックテーブル
+                break;
+        }
+
+
+
+        $message = <<< EOS
+<html>
+<head>
+<meta http-equiv="Content-Type" Content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1>有限会社 Mid</h1>
+<h2>
+お問い合わせありがとうございます。
+</h2>
+
+<p>
+お問い合わせ種別：{$h_Inquiry_type}
+</p>
+
+<p>
+お問い合わせ内容：{$h_toiawase_text}
+</p>
+
+<p>
+・お問い合わせ対象テーブル<br />
+※画像が表示されない場合は、メールソフトの設定を変更してください。<br />
+<img src="https://xs810378.xsrv.jp/site_demo04/img/$img_path">
+</p>
+
+</body>
+</html>
+EOS;
+
+        $mailHeaders = <<< EOF
+From:  {$senderName} <test_01@xs810378.xsrv.jp>
+Reply-To: test_01@xs810378.xsrv.jp
+Return-Path: test_01@xs810378.xsrv.jp
+Content-type: text/html; charset=UTF-8
+EOF;
+
+        $result = mail($to, $subject, $message, $mailHeaders);
+
+        if ($result) {
+            echo "送信成功";
+        } else {
+            echo "送信失敗";
+        }
+
+
+
+        // ============================ メール送信処理 END ==================================
+
+
+    }
 }
 
 /*
@@ -97,8 +221,6 @@ if (!empty($_SESSION['toiawase_text'])) {
     echo $user_name;
 }
 */
-
-
 
 
 ?>
@@ -157,7 +279,6 @@ if (!empty($_SESSION['toiawase_text'])) {
                     メールアドレス：<?php print h($h_email_address); ?>
                 </h2>
 
-
             </div>
 
         <?php elseif (strcmp($jim_token_FLG, 2) == 0) : ?>
@@ -168,6 +289,8 @@ if (!empty($_SESSION['toiawase_text'])) {
                 </h2>
 
                 <p style="text-align: center;">登録処理が完了しませんでした。</p>
+
+                <?php header("Location: register.php"); ?>
             </div>
 
         <?php else : ?>
@@ -178,6 +301,8 @@ if (!empty($_SESSION['toiawase_text'])) {
                 </h2>
 
                 <p style="text-align: center;"></p>
+
+                <?php header("Location: register.php"); ?>
             </div>
 
         <?php endif; ?>
