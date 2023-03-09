@@ -35,6 +35,8 @@ $img_number = ""; // メール送信　時　画像判別用
 
 $token_two = "";
 
+$arr_color_name = []; // 選択したカラー画像 index:0 => 名 01, index 1 = 名 02
+
 if (isset($_POST['token_two'])) {
     // === POST のトークン 2 が空だったら、リダイレクト
     if (empty($_POST['token_two'])) {
@@ -108,30 +110,48 @@ if (empty($_SESSION['token_two'])) {
         switch ($img_number) {
             case "1":
                 $img_path = "g_01.jpg";
+                $arr_color_name[0] = "ライトブルー";
+                $arr_color_name[1] = "（SS5）";
                 break;
             case "2":
                 $img_path = "g_02.jpg";
+                $arr_color_name[0] = "シャーベットピンク";
+                $arr_color_name[1] = "（SBP）";
                 break;
             case "3":
                 $img_path = "g_03.jpg";
+                $arr_color_name[0] = "シャーベットレッド";
+                $arr_color_name[1] = "（SBR）";
                 break;
             case "4":
                 $img_path = "g_04.jpg";
+                $arr_color_name[0] = "アクアグリーン";
+                $arr_color_name[1] = "（FG3）";
                 break;
             case "5":
                 $img_path = "g_05.jpg";
+                $arr_color_name[0] = "ダンディーブルー";
+                $arr_color_name[1] = "（SS1）";
                 break;
             case "6":
                 $img_path = "g_06.jpg";
+                $arr_color_name[0] = "ラベンダー";
+                $arr_color_name[1] = "（TP6）";
                 break;
             case "7":
                 $img_path = "g_07.jpg";
+                $arr_color_name[0] = "ペールスカイ";
+                $arr_color_name[1] = "（BO3）";
                 break;
             case "8":
                 $img_path = "g_08.jpg";
+                $arr_color_name[0] = "ピュアパールホワイト";
+                $arr_color_name[1] = "（JPW）";
                 break;
             case "20":
                 $img_path = "t_bl.jpg"; // === カーボンブラックテーブル
+                $arr_color_name[0] = "カーボンブラック";
+                $arr_color_name[1] = "";
                 break;
         }
 
@@ -141,26 +161,115 @@ if (empty($_SESSION['token_two'])) {
 <html>
 <head>
 <meta http-equiv="Content-Type" Content="text/html;charset=UTF-8">
+
+<style>
+
+
+
+        /*** HTML メール  レイアウト ***/
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .tb01 th,
+        .tb01 td {
+            padding: 15px;
+            border: solid 1px #ccc;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .tb01 th {
+            background: #c1a9a3;
+            color: #fff;
+
+        }
+
+        #mail_img {
+              width: 100%;
+              height: auto;
+        }
+
+        @media screen and (max-width: 640px) {
+            .tb01 .head {
+                display: none;
+            }
+
+            .tb01 {
+                width: 100%;
+            }
+
+            table.tb01 td {
+                display: block;
+                width: 100%;
+                border-bottom: none;
+            }
+
+            table.tb01 td:first-child {
+                background: #c1a9a3;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            .tb01 tr:last-child {
+                border-bottom: solid 1px #ccc;
+            }
+
+            #mail_img {
+                   width: 65%;
+                   height: auto;
+            }
+
+        }
+
+</style>
+
 </head>
 <body>
-<h1>有限会社 Mid</h1>
+<h1>有限会社 ミッド（Mid）</h1>
 <h2>
 お問い合わせありがとうございます。
 </h2>
 
-<p>
-お問い合わせ種別：{$h_Inquiry_type}
-</p>
+<table class="tb01" width="100%" border="0" cellpadding="0" cellspacing="0" style="width:100%; border:none; margin:0 auto; max-width: 1000px;display: table !important;">
+  <tr>
+    <th width="28%">
+        お問い合わせ種別
+    </th>
 
-<p>
-お問い合わせ内容：{$h_toiawase_text}
-</p>
+    <th width="28%">
+        お問い合わせ内容
+    </th>
 
-<p>
-・お問い合わせ対象テーブル<br />
+     <th width="40%">
+        お問い合わせ対象テーブル
+    </th>
+  </tr> 
+  
+  <tr>
+    <td width="28%">{$h_Inquiry_type}</td>
+    <td width="28%">{$h_toiawase_text}</td>
+    <td width="40%"><p>
+テーブルカラー:<b>{$arr_color_name[0]} {$arr_color_name[1]}</b><br /><br />
 ※画像が表示されない場合は、メールソフトの設定を変更してください。<br />
-<img src="https://xs810378.xsrv.jp/site_demo04/img/$img_path">
+<img id="mail_img" width="100%" src="https://xs810378.xsrv.jp/site_demo04/img/$img_path">
+</p></td>
+  </tr>
+</table>
+
+<p>
+上記の内容のお問い合わせに関しまして、ご連絡させて頂きますので<br />
+よろしくお願い致します。
 </p>
+
+<div style="background-color:#0C0C38;padding:8px;">
+    <p style="color:#fff;text-align:center;font-size:1.0em;">〒955-0036 新潟県三条市篭場5-10</p>
+    <p style="color:#fff;text-align:center;font-size:1.6em;">有限会社ミッド</p>
+    <p style="color:#fff;text-align:center;font-size:1.0em;">電話番号:<a style="color:#fff !important;text-decoration: none !important;font-size:1.3em !important;display: inline-block;" href="tel:0256-38-2688">0256-38-2688</a></p>
+    <p style="color:#fff;text-align:center;font-size:1.0em;">メールアドレス:<a style="color:#fff !important;text-decoration: none !important;font-size:1.3em !important;display: inline-block;" href="mailto:niigata.ogi-mid@am.wakwak.com?subject=ノフュレカラーページから">niigata.ogi-mid@am.wakwak.com</a></p>
+</div>
 
 </body>
 </html>
@@ -173,54 +282,23 @@ Return-Path: test_01@xs810378.xsrv.jp
 Content-type: text/html; charset=UTF-8
 EOF;
 
+        // === メール送信
         $result = mail($to, $subject, $message, $mailHeaders);
 
+        // === 送信結果 判定 ===
         if ($result) {
-            echo "送信成功";
+            //  echo "送信成功";
+            $Thanks_Flg = 1;
         } else {
-            echo "送信失敗";
+            //  echo "送信失敗";
+            $Thanks_Flg  = 2;
         }
-
-
 
         // ============================ メール送信処理 END ==================================
 
 
     }
 }
-
-/*
-if (!empty($_SESSION['user_name'])) {
-    $user_name = $_SESSION['usre_name'];
-    echo $user_name;
-}
-
-
-if (!empty($_SESSION['user_name_kana'])) {
-    $user_name_kana = $_SESSION['user_name_kana'];
-    echo $user_name;
-}
-
-if (!empty($_SESSION['tel'])) {
-    $tel = $_SESSION['tel'];
-    echo $user_name;
-}
-
-if (!empty($_SESSION['email_address'])) {
-    $email_address = $_SESSION['email_address'];
-    echo $user_name;
-}
-
-if (!empty($_SESSION['Inquiry_type'])) {
-    $Inquiry_type = $_SESSION['Inquiry_type'];
-    echo $user_name;
-}
-
-if (!empty($_SESSION['toiawase_text'])) {
-    $toiawase_text = $_SESSION['toiawase_text'];
-    echo $user_name;
-}
-*/
 
 
 ?>
@@ -244,8 +322,6 @@ if (!empty($_SESSION['toiawase_text'])) {
 
     <!-- font awsome cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-
-
 
     <title>問い合わせ 完了</title>
 
@@ -285,10 +361,12 @@ if (!empty($_SESSION['toiawase_text'])) {
 
             <div class="col-lg-10 col-sm-10 col-10">
                 <h2 class="my-4 sank_h2" style="text-align: center;">
-                    登録エラーが発生しました。
+                    自動メール送信 エラー
                 </h2>
 
-                <p style="text-align: center;">登録処理が完了しませんでした。</p>
+                <p style="text-align: center;">ご迷惑をおかけします。<br />
+                    自動送信メールの送信が失敗しました。
+                </p>
 
                 <?php header("Location: register.php"); ?>
             </div>

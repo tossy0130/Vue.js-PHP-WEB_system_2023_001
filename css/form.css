@@ -2,21 +2,10 @@
 /*** ========= 追加 CSS ========= ***/
 
 html{
-    background: #e5e5e5;
+    
 }
 
-body {
-    font-family: 'Noto Sans JP',
-    'Yu Gothic Medium',
-    '游ゴシック Medium',
-    YuGothic,
-    '游ゴシック体',
-    'ヒラギノ角ゴ Pro W3',
-    'メイリオ',
-    sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-}
+
 
 /* コンタクト　テキスト */
 .u-en {

@@ -11,7 +11,7 @@ require(dirname(__FILE__) . '/functions.php');
 
 <head>
 
-    <link rel="stylesheet" href="css/form.css">
+
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JXGMEX22V"></script>
@@ -37,13 +37,22 @@ require(dirname(__FILE__) . '/functions.php');
         <link href="css/style.css" rel="stylesheet">
         -->
 
+
+    <link rel="stylesheet" href="css/form.css">
+
+
     <link href="css/index.css" rel="stylesheet">
 
     <!-- 日本語フォント 01 -->
     <link rel="stylesheet" type="text/css" href="http://mplus-fonts.sourceforge.jp/webfonts/general-j/mplus_webfonts.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
 
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Vue.js CDN -->
 
@@ -52,127 +61,183 @@ require(dirname(__FILE__) . '/functions.php');
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <script src="https://unpkg.com/vue@3"></script>
 
     <style>
-        #app {
-            border-radius: 4px;
-            padding: 20px;
-            transition: all 0.8s;
-        }
-
-        .container_001 {
-            background-color: #fff;
-        }
-
-        .head_content {
+        /* === 特徴　=== */
+        .content_02 {
             width: 1000px;
             margin: 0 auto;
         }
 
-        .first_img_box {
-            width: 100%;
-            height: 60em;
-        }
-
-        .first_img_div {
-            width: 15%;
-            position: relative;
-            left: 40%;
-            top: 36%;
-        }
-
-        /** === ヘッダーメニュー === */
-        .header_menu {
+        .cont_02_box {
             display: flex;
         }
 
-        .header_left {
-            position: relative;
-            top: 20px;
-            left: 0%;
+        .midasi_01 {
+            font-size: 2.6vw;
+            text-align: center;
+            padding: 25px 0;
+            letter-spacing: 0.2em;
         }
 
-        #menu_logo_img {
-            width: 18%;
+        #cont_02_itme_01>img {
+            width: 97%;
             height: auto;
         }
 
-        .header_menu_ul {
-            display: flex;
+        .cont_text_02 {
+            font-size: 1.15vw;
+            margin: 0px 0 65px 0;
+            letter-spacing: 0.2em;
         }
 
-        .header_menu_ul>li {
-            padding: 0 50px 0px 0;
-            list-style: none;
+        /* === フッター === */
+        #footer_container {
+            padding: 0 0 25px 0;
         }
 
+        .mid_footer {
+            width: 1000px;
+            margin: 0 auto;
+        }
 
-        .header_menu_ul>li>a {
+        .footer_logo {
+            text-align: center;
+            padding: 35px 0 0px 0;
+        }
+
+        .footer_logo>img {
+            width: 20%;
+            height: auto;
+        }
+
+        .f_text_01 {
+            text-align: center;
+            color: #fff;
+            font-size: 1.35vw;
+            letter-spacing: 0.18em;
+        }
+
+        .f_text_02 {
+            text-align: center;
+            font-size: 1.35vw;
+            color: #fff;
+            letter-spacing: 0.18em;
+        }
+
+        .f_text_02>a {
+            display: inline-block;
             text-decoration: none;
+            color: #fff;
+        }
+
+        #design_text {
+            position: relative;
+            top: 682px;
+            left: 63%;
+            font-size: 0.7vw;
+            font-weight: bold;
+        }
+
+        /* === フッター END ===*/
+
+        .color_text {
+            display: inline-block;
+            font-size: 0.62vw;
+        }
+
+        .color_img_box {
             display: inline-block;
         }
 
-        /** === ヘッダーキャッチコピー */
-
-        .h_text_box {
-            display: flex;
-            position: relative;
-            top: 55px;
-            font-size: 3.8vw;
+        #youbou_box {
+            border-top: 6px solid #4A4E4F;
+            border-bottom: 6px solid #4A4E4F;
+            width: 100%;
         }
 
-
-        .catch_text_01 {
-            background: linear-gradient(114deg, rgba(201, 203, 202, 1) 0%, rgba(160, 142, 130, 1) 35%, rgba(193, 169, 163, 1) 100%);
-            color: transparent;
-            -webkit-background-clip: text;
-        }
-
-        .catch_text_02 {
-            background: linear-gradient(114deg, rgba(201, 203, 202, 1) 0%, rgba(160, 142, 130, 1) 35%, rgba(193, 169, 163, 1) 100%);
-            color: transparent;
-            -webkit-background-clip: text;
-        }
-
-        .gt_01 {
-            font-size: 4.8vw !important;
-        }
-
-        #mozi_01 {
-            margin-right: 20px;
-        }
-
-        #mozi_02 {
-            margin-right: 20px;
-        }
-
-        .h_text_02 {
-            position: relative;
-            top: 230px;
+        #youbou_box>p:nth-child(1) {
+            text-align: center;
             font-size: 2.2vw;
         }
 
-        .h_text_03 {
+        #carbon_text {
+            display: block;
             position: relative;
-            top: 405px;
-            font-size: 2.2vw;
+            top: 80px;
+            left: 5%;
+            color: #E6000C;
         }
 
-        .h_text_04 {
+        #nsg {
+            display: block;
+            text-align: center;
+            border-right: 7px solid #4A4E4F;
+            border-left: 7px solid #4A4E4F;
+            margin: 0 0 0 0;
+            padding: 0.5em 1em;
+            width: 80%;
             position: relative;
-            top: 605px;
-            font-size: 2.2vw;
+            left: 11%;
         }
+
+        /** ====== 画像　拡大 ====== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            z-index: 100;
+        }
+
+        .bigimg {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 86%;
+            height: auto;
+        }
+
+        @media (min-width: 960px) {
+            .bigimg {
+                width: 80%;
+                height: auto;
+            }
+        }
+
+        .close-btn {
+            color: #fff;
+            font-size: 40px;
+            position: absolute;
+            right: 20px;
+            top: 0;
+        }
+
+        .close-btn a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /** ====== 画像　拡大 END ====== */
     </style>
 
 </head>
 
 <body>
 
+
     <!-- =============================== ヘッダーコンテンツ ============================ -->
 
-    <div class="container_001">
+    <div class="container_001" style="background-color:#ffffff;">
 
         <div id="sh" class="first_img_box">
             <div class="first_img_div">
@@ -253,6 +318,9 @@ require(dirname(__FILE__) . '/functions.php');
                         T
                     </div>
                     <div class="h_text_box_min catch_text_01 gt_01">
+                        e
+                    </div>
+                    <div class="h_text_box_min catch_text_01 gt_01">
                         l
                     </div>
                     <div class="h_text_box_min catch_text_01 gt_01">
@@ -271,14 +339,13 @@ require(dirname(__FILE__) . '/functions.php');
 
 
             <div class="h_text_02">
-                G-Tllus Carbon saitonituite<br />
+                G-Tellus Carbon saitonituite<br />
                 カーボン繊維入りガラス
             </div>
 
             <div class="h_text_03">
-                カラーガラス<br />
-                NSGインテリア株式会社製<br />
-                色名・色番
+                スタイリッシュなデザインと職人技が<br />
+                融合したインテリア製品
             </div>
 
             <div class="h_text_04">
@@ -288,25 +355,71 @@ require(dirname(__FILE__) . '/functions.php');
 
 
             <div id="app">
+
+                <p id="design_text">Designed by Hiromi Ohashi</p>
                 <div>
-                    <div class="box"><img src="./img/ds/01.jpg"></div>
+                    <div class="box"><img src="./img/ds/001.png" id="top_table_img"></div>
                 </div>
 
             </div>
         </div>
+
+
     </div> <!-- container -->
 
     <!-- ==================================== ヘッダー END ====================================== -->
 
+    <!-- ======================== 特徴 開始 ======================= -->
 
+    <div class="container" id="tokutyou_container" style="background-color:#DDDDDD;">
 
-    <div class="container">
+        <div class="content_02">
+
+            <p class="midasi_01">
+                特徴
+            </p>
+
+            <div class="cont_02_box">
+
+                <div id="cont_02_itme_01">
+                    <img src="./img/ds/mid_item_01.png">
+                </div>
+
+                <div id="cont_02_item_right">
+
+                    <div class="cont_text_02">
+                        ・天板（トップ）は平面曲線を取り入れたデザイン形状とカラー合わせガラスを用いたローテーブル
+                    </div>
+
+                    <div class="cont_text_02">
+                        ・フレームは類をみない曲線美を追及したデザインと職人の技術の粋を凝縮
+                    </div>
+
+                    <div class="cont_text_02">
+                        ・合わせガラスは一般ガラスや強化ガラスと違って万が一割れてもガラスが飛散しにくい構造になっています。
+                    </div>
+
+                    <div class="cont_text_02">
+                        ・水平出しがしっかり出来る構造設計
+                    </div>
+                </div>
+
+            </div><!-- cont_02_box -->
+
+        </div>
+
+    </div>
+
+    <!-- ======================== 特徴 開始 END ======================= -->
+
+    <!-- ======================== tab 色選択　Start ======================= -->
+    <div class="container" id="tab_container" style="background-color:#C2B4AE;">
 
         <div class="tab_box">
 
             <!-- タブメニュー -->
             <div class="btn_area">
-                <p class="tab_btn active">テーブルタイプ　ホワイト</p>
+                <p class="tab_btn active">テーブルタイプ パールホワイト</p>
                 <p class="tab_btn">カーボン ブラック</p>
             </div>
 
@@ -318,6 +431,16 @@ require(dirname(__FILE__) . '/functions.php');
 
                 <div class="tab_panel active">
 
+                    <div id="youbou_box">
+                        <p>-オリジナル要望対応-</p>
+
+                        <p>
+                            ・ガラストップのカラーリング、アートフィルムによるデザイン
+                            ・フレーム、脚体のカラーリングも対応可能です。
+                        </p>
+
+                    </div>
+
                     <!-- ＝＝＝ ホワイト　＝＝＝ -->
                     <div class="flex">
 
@@ -325,15 +448,32 @@ require(dirname(__FILE__) . '/functions.php');
                         <div>
 
                             <ul id="sub_image" class="sub_image">
-                                <li style="overflow: hidden;height: 545px;"><img src="./img/g_01.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_02.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_03.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_04.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_05.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_06.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_07.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/g_08.jpg" class="s_img"></li>
-                                <li class="img_hide" style="overflow: hidden;height: 545px;"><img src="./img/a_white/TAK_3618_green.jpg" class="s_img"></li>
+
+                                <li style="overflow: hidden !important;height: 545px;" class="first_img gazou_btn"><img src="./img/g_01.jpg" class="s_img" id="s_img_01"></li>
+
+                                <li class="img_hide gazou_btn" style="overflow: hidden !important;height: 545px;"><img src="./img/g_02.jpg" class="s_img"></li>
+
+                                <li class="img_hide gazou_btn" style="overflow: hidden !important;height: 545px;"><img src="./img/g_03.jpg" class="s_img"></li>
+
+                                <li class="img_hide gazou_btn" style="overflow: hidden !important;height: 545px;"><img src="./img/g_04.jpg" class="s_img"></li>
+
+                                <li class="img_hide gazou_btn" style="overflow: hidden !important;height: 545px;"><img src="./img/g_05.jpg" class="s_img"></li>
+
+                                <li class="img_hide gazou_btn" style="overflow: hidden !important;height: 545px;"><img src="./img/g_06.jpg" class="s_img"></li>
+
+                                <li class="img_hide gazou_btn" style="overflow: hidden !important;height: 545px;"><img src="./img/g_07.jpg" class="s_img"></li>
+
+                                <li class="img_hide gazou_btn" style="overflow: hidden !important;height: 545px;"><img src="./img/g_08.jpg" class="s_img"></li>
+
+                                <!-- 
+                                <div id="modal_window_image_09"></div>
+                                <li class="img_hide" style="overflow: hidden !important;height: 545px;"><img src="./img/a_white/TAK_3618_green.jpg" class="s_img"></li>
+                                -->
+
+                                <div class="modal">
+                                    <div class="bigimg"><img src="" alt=""></div>
+                                    <p class="close-btn"><a href=""></a></p>
+                                </div>
                             </ul>
 
                         </div>
@@ -349,66 +489,53 @@ require(dirname(__FILE__) . '/functions.php');
                             </h2>
 
                             <!-- テーブルカラー  -->
-                            <p class="mini_title">テーブルカラー</p>
+                            <p class="mini_title">ガラスはカラータイプがお選びできます。</p>
+                            <span id="nsg">NSG インテリア株式会社製 色名・色番</span>
                             <ul id="btn_01" class="btn_table">
-                                <li><img src="./img/honban/tak_01.jpg" class="t_color_img"></li>
-                                <li><img src="./img/honban/tak_02.jpg" class="t_color_img"></li>
-                                <li><img src="./img/honban/tak_03.jpg" class="t_color_img"></li>
-                                <li><img src="./img/honban/tak_04.jpg" class="t_color_img"></li>
-                                <li><img src="./img/honban/tak_05.jpg" class="t_color_img"></li>
-                                <li><img src="./img/honban/tak_06.jpg" class="t_color_img"></li>
-                                <li><img src="./img/honban/tak_07.jpg" class="t_color_img"></li>
-                                <li><img src="./img/honban/tak_08.jpg" class="t_color_img"></li>
+
+                                <!-- カラー　１列目 -->
+                                <li>
+                                    <sapn class="color_text">ライトブルー<br />（SS5）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_01.jpg" class="t_color_img"></span>
+                                </li>
+                                <li>
+                                    <sapn class="color_text">シャーベットピンク<br />（SBP）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_02.jpg" class="t_color_img"></span>
+                                </li>
+                                <li>
+                                    <sapn class="color_text">シャーベットレッド<br />（SBR）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_03.jpg" class="t_color_img"></span>
+                                </li>
+
+                                <!-- カラー　２列目 -->
+                                <li>
+                                    <sapn class="color_text">アクアグリーン<br />（FG3）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_04.jpg" class="t_color_img"></span>
+                                </li>
+                                <li>
+                                    <sapn class="color_text">ダンディーブルー<br />（SS1）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_05.jpg" class="t_color_img"></span>
+                                </li>
+                                <li>
+                                    <sapn class="color_text">ラベンダー<br />（TP6）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_06.jpg" class="t_color_img"></span>
+                                </li>
+
+                                <!-- カラー　３列目 -->
+                                <li>
+                                    <sapn class="color_text">ペールスカイ<br />（BO3）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_07.jpg" class="t_color_img"></span>
+                                </li>
+                                <li>
+                                    <sapn class="color_text">ピュアパールホワイト<br />（JPW）</sapn>
+                                    <span class="color_img_box"><img src="./img/honban/tak_08.jpg" class="t_color_img"></span>
+                                </li>
                             </ul>
-
-
 
                             <form id="contactForm" name="contactForm" method="post" action="form.php">
                                 <input type="hidden" name="path" id="path">
                                 <input id="send" class="Form-Btn02" type="submit" value="問い合わせフォームへ進む"></p>
                             </form>
-
-                            <!-- 脚カラー  -->
-
-                            <!--
-            <p class="mini_title">脚カラー</p>
-            -->
-
-                            <!-- ========= フレームタイプ ========= -->
-
-                            <!-- 
-                            <p class="mini_title">フレームタイプ</p>
-
-                            <ul id="btn_ashi" class="btn_ashi">
-                                <li><img src="./img/t_ashi/t_ashi_black.jpg" class="t_color_img_02"></li>
-                                <li><img src="./img/t_ashi/t_ashi_block.jpg" class="t_color_img_02"></li>
-
-                           
-                <li><img src="./img/t_color/t_03.jpg" class="t_color_img"></li>
-                
-                            </ul>
-
-
-
-                            <ul id="f_type" class="f_type" style="display:flex;">
-                                <li>
-                                    <a href="#" alt="作った人 夏目智徹, 夏目 智徹,toshiyuki natsume">ブラック</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">ホワイト</a>
-                                </li>
-                            </ul>
-
-                            -->
-
-
-                            <!-- 
-                <div class="button001">
-                    <a href="#">お問い合わせ</a>
-                </div>
-    -->
-
 
                         </div> <!-- 右コンテンツ　END -->
 
@@ -420,6 +547,20 @@ require(dirname(__FILE__) . '/functions.php');
                 <!-- タブ コンテンツ 01 -->
 
                 <div class="tab_panel">
+
+                    <div id="youbou_box">
+                        <p>-カーボンブラック-</p>
+
+                        <p>
+                            ・脚体はブラック、フレームはミラー仕上げ。
+                        </p>
+
+                    </div>
+
+                    <span id="carbon_text">
+                        ※ガラステーブルの右側の斜めに色が変わっている部分は撮影上、<br />
+                        光が当たっています。デザインは単色のブラックになっています。
+                    </span>
 
                     <!-- ＝＝＝ カーボンブラック　＝＝＝ -->
                     <div class="flex">
@@ -453,56 +594,16 @@ require(dirname(__FILE__) . '/functions.php');
                             <!-- テーブルカラー  -->
                             <p class="mini_title">テーブルカラー</p>
                             <ul id="btn" class="btn_table_02">
-                                <li><img src="./img/te-bulu_01.jpg" class="t_color_img"></li>
+                                <li><img src="./img/ds/color_btn_img_01.jpg" class="t_color_img"></li>
                             </ul>
 
                             <!-- 画像パス　POST 用フォーム -->
                             <form id="contactForm" name="contactForm" method="post" action="form.php">
                                 <input type="hidden" name="path" id="path">
-                                <input id="send" class="Form-Btn02" type="submit" value="問い合わせ">
+                                <input id="send" class="Form-Btn02" type="submit" value="問い合わせフォームへ進む">
                             </form>
 
                             <!-- 脚カラー  -->
-
-                            <!--
-            <p class="mini_title">脚カラー</p>
-            -->
-
-                            <!-- ========= フレームタイプ ========= -->
-
-                            <!-- 
-                            <p class="mini_title">フレームタイプ</p>
-
-                            <ul id="btn_ashi" class="btn_ashi">
-                                <li><img src="./img/t_ashi/t_ashi_black.jpg" class="t_color_img_02"></li>
-                                <li><img src="./img/t_ashi/t_ashi_block.jpg" class="t_color_img_02"></li>
-
-                           
-                <li><img src="./img/t_color/t_03.jpg" class="t_color_img"></li>
-                
-                            </ul>
-
-
-
-                            <ul id="f_type" class="f_type" style="display:flex;">
-                                <li>
-                                    <a href="#" alt="作った人 夏目智徹, 夏目 智徹,toshiyuki natsume">ブラック</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">ホワイト</a>
-                                </li>
-                            </ul>
-
-                            -->
-
-
-                            <!-- 
-                <div class="button001">
-                    <a href="#">お問い合わせ</a>
-                </div>
-    -->
-
 
                         </div> <!-- 右コンテンツ　END -->
 
@@ -517,178 +618,67 @@ require(dirname(__FILE__) . '/functions.php');
         </div>
 
     </div><!-- END container -->
+    <!-- ======================== tab 色選択　END ======================= -->
 
+    <!-- ============ フッター Start ============= -->
+
+    <div class="container" id="footer_container" style="background-color:#161616;">
+        <footer class="mid_footer">
+            <div class="footer_logo">
+
+                <img src="./img/ds/f_logo_02.png">
+
+                <!--
+                <img src="./img/ds/f_logo.png">
+    -->
+            </div>
+
+            <p class="f_text_01">
+                MID LTD.
+            </p>
+
+            <p class="f_text_02">〒955-0036 新潟県三条市篭場5-10<br />
+                TEL <a href="tel:0256-38-2688">0256-38-2688</a> FAX 0256-38-2689</p>
+            </p>
+
+        </footer>
+    </div>
+    <!-- ============ フッター END ============= -->
 
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
-    <script>
-        //　$(window).load(function () {
-        $(function() {
-
-            // === 初期設定
-            var num = 0;
-            var num_2;
-            var num_3; //=== フレームタイプ　の eq 取得
-
-            var targetSrc = $("#sub_image li img").eq(0).attr('src');
-            $("input[name=path]").val(targetSrc);
-
-            /*
-            $("#main_image li").eq(0).addClass("show"); 
-            $("#main_image li").eq(0).removeClass("img_hide");
-            */
-
-            // === 最初に表示する要素 
-            // $("#main_image li").eq(0).removeClass("img_hide");
-            $("#main_image li").eq(0).show();
-
-
-            // === フレームタイプ
-            // $("#sub_image").hide(); // === 「ホワイト」非表示
-
-
-            // === タブメニュー　クリック
-            $('.tab_box .tab_btn').click(function() {
-                var index = $('.tab_box .tab_btn').index(this);
-
-                console.log('タブ:index::::' + index);
-
-                $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
-                $(this).addClass('active');
-                $('.tab_box .tab_panel').eq(index).addClass('active');
-
-                // === 画像 URL 取得ロジック
-                if (index == 0) {
-                    // 画像URLを取得
-                    var targetSrc = $("#sub_image li img").eq(0).attr('src');
-                    $("input[name=path]").val(targetSrc);
-
-                } else {
-
-                    var targetSrc = $("#main_image li img").eq(0).attr('src');
-                    $("input[name=path]").val(targetSrc);
-                }
-
-            });
-
-            // === テーブルカラー選択
-            $("#btn li").click(function() {
-                num = $("#btn li").index(this);
-                $("#main_image li").hide();
-                $("#main_image li").eq(num).show();
-
-                // 画像URLを取得
-                targetSrc = $("#main_image li img").eq(num).attr('src');
-                $("input[name=path]").val(targetSrc);
-                console.log(targetSrc);
-            });
-
-            //============== ホワイトテーブル　色変え
-            $("#sub_image li").eq(0).show();
-
-            // === テーブルカラー選択
-            $("#btn_01 li").click(function() {
-                num = $("#btn_01 li").index(this);
-                $("#sub_image li").hide();
-                $("#sub_image li").eq(num).show();
-
-                // 画像URLを取得
-                targetSrc = $("#sub_image li img").eq(num).attr('src');
-                $("input[name=path]").val(targetSrc);
-                console.log(targetSrc);
-            });
-
-            // === 脚カラー
-            $("#btn_ashi li").click(function() {
-                num_2 = $("#btn_ashi li").index(this);
-
-
-                //=====================
-                // === シルバーだったら
-                //=====================
-                if (num_2 == 0) {
-                    $("#sub_image").hide();
-                    $("#main_image").fadeIn('fast');
-
-
-                } else if (num_2 == 1) {
-                    //=====================
-                    // === ホワイトだったら
-                    //=====================
-
-                    $("#main_image").hide();
-                    $("#sub_image").show();
-
-                    if (num == -1) {
-                        $("#sub_image li").eq(0).fadeIn('fast');
-                    } else {
-                        $("#sub_image li").eq(num).fadeIn('fast');
-                    }
-
-
-                }
-
-            });
-
-            // === フレームタイプ
-            $("#f_type li").click(function() {
-
-                // === 「ホワイト」が押されたら
-
-                num_3 = $("#f_type li").index(this);
-
-                console.log("カラータイプ eq:::" + num);
-                console.log("フレームタイプ eq:::" + num_2);
-                console.log("メイン画像:::" + num_3); // 押された時の、メイン画像の eq を取得　表示
-
-
-                //=====================
-                // === シルバーだったら
-                //=====================
-                if (num_3 == 0) {
-                    $("#sub_image").hide();
-                    $("#main_image").fadeIn('fast');
-
-
-                } else if (num_3 == 1) {
-                    //=====================
-                    // === ホワイトだったら
-                    //=====================
-
-                    $("#main_image").hide();
-                    $("#sub_image").show();
-
-                    if (num == -1) {
-                        $("#sub_image li").eq(0).fadeIn('fast');
-                    } else {
-                        $("#sub_image li").eq(num).fadeIn('fast');
-                    }
-
-
-                }
-
-            });
-
-        });
-    </script>
-
-    <script>
-        $(function() {
-            $("#contactForm").submit(function() {
-                if (window.confirm('お選び頂きました商品で問い合わせ画面へ進みます。よろしいですか？')) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-    </script>
-
+    <script src="./js/index.js"></script>
     <script src="./js/top.js"></script>
 
+    <script>
+        $(document).ready(function() {
+
+            $('.gazou_btn').click(function() {
+                var ImgSrc = $(this).children().attr('src');
+                console.log("ImgSrc:::" + ImgSrc);
+                $('.bigimg').children().attr('src', ImgSrc);
+                $('.modal').fadeIn();
+                $('body,html').css('overflow-y', 'hidden'); // スクロール禁止
+                return false
+            });
+
+            $('.close-btn').click(function() {
+                $('.modal').fadeOut();
+                $('body,html').css('overflow-y', 'visible'); // スクロール禁止　解除
+                return false
+            });
+
+            $('.modal').click(function() {
+                $('.modal').fadeOut();
+                $('body,html').css('overflow-y', 'visible'); // スクロール禁止　解除
+                return false
+            });
+
+        });
+    </script>
 
 
 </body>

@@ -59,8 +59,13 @@ if (empty($_SESSION['token_one'])) {
 
         // === 会社名
         if (isset($_POST['company_name'])) {
-            $company_name = $_POST['company_name'];
-            $_SESSION['company_name'] = $company_name;
+            if (empty($_POST['company_name'])) {
+                $company_name = "";
+                $_SESSION['company_name'] = "";
+            } else {
+                $company_name = $_POST['company_name'];
+                $_SESSION['company_name'] = $company_name;
+            }
         }
 
         // === 電話番号
@@ -107,7 +112,7 @@ try {
 
     // PDOが例外を投げるように設定する
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "接続に成功しました";
+    //  echo "接続に成功しました";
 
     // ＊＊＊　インサート処理　＊＊＊
     $stmt = $pdo->prepare("INSERT INTO mid_form(
@@ -137,7 +142,7 @@ try {
 
     if ($res) {
         $pdo->commit();
-        print("登録完了");
+        //  print("登録完了");
     }
 } catch (PDOException $e) {
     $e->getMessage();
@@ -163,6 +168,23 @@ try {
     <link rel="stylesheet" href="css/form.css">
 
     <title>確認画面</title>
+
+    <style>
+        body {
+            font-family: 'Noto Sans JP',
+                'Yu Gothic Medium',
+                '游ゴシック Medium',
+                YuGothic,
+                '游ゴシック体',
+                'ヒラギノ角ゴ Pro W3',
+                'メイリオ',
+                sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            background: #e5e5e5;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -200,8 +222,7 @@ try {
 
             <!-- 確認 アイテム -->
             <div class="Form-Item02">
-                <p class="Form-Item-Label">会社名<span class="Form-Item-Label-Required">必須</span>
-                </p>
+                <p class="Form-Item-Label">会社名
 
                 <p>
                     <?php if (!empty($company_name)) {

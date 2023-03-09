@@ -77,7 +77,7 @@ try {
 
     // PDOが例外を投げるように設定する
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "接続に成功しました";
+    //echo "接続に成功しました";
 } catch (PDOException $e) {
     $e->getMessage();
     echo "接続に失敗しました: " . $e->getMessage();
@@ -112,6 +112,20 @@ try {
     <script src="https://cdn.jsdelivr.net/npm/vuelidate@0.7.4/dist/vuelidate.min.js"></script>
 
     <style>
+        body {
+            font-family: 'Noto Sans JP',
+                'Yu Gothic Medium',
+                '游ゴシック Medium',
+                YuGothic,
+                '游ゴシック体',
+                'ヒラギノ角ゴ Pro W3',
+                'メイリオ',
+                sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            background-color: rgb(221, 221, 221);
+        }
+
         #select_img {
             width: 45%;
             height: auto;
@@ -135,6 +149,15 @@ try {
             margin: 0 auto;
             position: relative;
             top: 20px;
+        }
+
+        #zigyou_text {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            left: 6%;
+        }
         }
     </style>
 </head>
@@ -196,16 +219,29 @@ try {
 
             <!-- 会社名 -->
             <div class="Form-Item">
+
+                <!--
                 <p class="Form-Item-Label">会社名<span class="Form-Item-Label-Required">必須</span>
                     <span class="holder_text" id="pl_02">（例）株式会社●●</span>
                 </p>
 
                 <p>
-                    <!-- Vue.js エラーメッセージ -->
+                   
                     <input type="text" class="Form-Item-Input" value="<?php if (!empty($_POST['company_name'])) {
                                                                             echo h($_POST['company_name']);
                                                                         } ?>" placeholder="（例）株式会社●●" name="company_name" v-model="company_name" @input="$v.company_name.$touch()">
                     <span v-if="$v.company_name.$error" class="err_span">※入力欄が空欄になっています。お名前（カタカナ）でご入力ください。</span>
+                </p>
+            </div>
+                                                                    -->
+
+                <p class="Form-Item-Label">会社名
+                    <span class="holder_text" id="pl_02">（例）株式会社●●</span>
+                </p>
+                <span id="zigyou_text" style="color:red;">※事業所の方は会社名のご入力をお願い致します。</span>
+
+                <p>
+                    <input type="text" class="Form-Item-Input" name="company_name" placeholder="例）株式会社●●">
                 </p>
             </div>
 
@@ -346,9 +382,13 @@ try {
                 user_name_kana: {
                     required
                 },
+
+                /*
                 company_name: {
                     required
                 },
+                */
+
                 // 電話番号
                 tel: {
                     required

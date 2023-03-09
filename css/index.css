@@ -76,9 +76,10 @@
       left: 5%;
   }
 
+  /* === ガラスカラー  === */
   .t_color_img {
-      width: 60%;
-      height: 115%;
+    width: 83%;
+    height: 5.2vw;
   }
 
   .t_color_img_02 {
@@ -88,7 +89,7 @@
 
   h2.t_title {
       background: #4A4E4F;
-      margin: 0 0px 35px 50px;
+      margin: 0 0px 20px 50px
   }
 
   h2.t_title>p:nth-child(1) {
@@ -271,7 +272,7 @@
   }
 
   .tab_box .tab_btn {
-      width: 220px;
+      width: 250px;
       padding: 8px 0;
       color: #333;
       background: #f5f7f8;
@@ -291,6 +292,7 @@
   .tab_box .tab_btn.active {
       background: #277595;
       color: #fff;
+      width: 25%;
   }
 
   .tab_box .panel_area {
@@ -309,3 +311,116 @@
   .tab_box .tab_panel.active {
       display: block;
   }
+
+  /* ============== idnex.php コンテンツ部分 ============== */
+
+        #app {
+            border-radius: 4px;
+            padding: 20px;
+            transition: all 0.8s;
+        }
+    
+        .container_001 {
+            background-color: #fff;
+        }
+    
+        .head_content {
+            width: 1000px;
+            margin: 0 auto;
+        }
+    
+        .first_img_box {
+            width: 100%;
+            height: 60em;
+        }
+    
+        .first_img_div {
+            width: 15%;
+            position: relative;
+            left: 40%;
+            top: 36%;
+        }
+    
+        /** === ヘッダーメニュー === */
+        .header_menu {
+            display: flex;
+        }
+    
+        .header_left {
+            position: relative;
+            top: 20px;
+            left: 0%;
+        }
+    
+        #menu_logo_img {
+            width: 18%;
+            height: auto;
+        }
+    
+        .header_menu_ul {
+            display: flex;
+        }
+    
+        .header_menu_ul>li {
+            padding: 0 50px 0px 0;
+            list-style: none;
+        }
+    
+    
+        .header_menu_ul>li>a {
+            text-decoration: none;
+            display: inline-block;
+        }
+    
+        /** === ヘッダーキャッチコピー */
+    
+        .h_text_box {
+            display: flex;
+            position: relative;
+            top: 55px;
+            font-size: 3.8vw;
+        }
+    
+    
+        .catch_text_01 {
+            background: linear-gradient(114deg, rgba(201, 203, 202, 1) 0%, rgba(160, 142, 130, 1) 35%, rgba(193, 169, 163, 1) 100%);
+            color: transparent;
+            -webkit-background-clip: text;
+            padding: 0 6px 0 0;
+        }
+    
+        .catch_text_02 {
+            background: linear-gradient(114deg, rgba(201, 203, 202, 1) 0%, rgba(160, 142, 130, 1) 35%, rgba(193, 169, 163, 1) 100%);
+            color: transparent;
+            -webkit-background-clip: text;
+        }
+    
+        .gt_01 {
+            font-size: 4.8vw !important;
+        }
+    
+        #mozi_01 {
+            margin-right: 20px;
+        }
+    
+        #mozi_02 {
+            margin-right: 20px;
+        }
+    
+        .h_text_02 {
+            position: relative;
+            top: 230px;
+            font-size: 1.8vw;
+        }
+    
+        .h_text_03 {
+            position: relative;
+            top: 405px;
+            font-size: 1.8vw;
+        }
+    
+        .h_text_04 {
+            position: relative;
+            top: 605px;
+            font-size: 1.8vw;
+        }
